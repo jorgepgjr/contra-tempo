@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Cliente;
@@ -68,22 +67,25 @@ public class ClienteController {
 	}
 	
 	@RequestMapping( value="/search", method = RequestMethod.GET)
-	public @ResponseBody List<ClienteVO> search(@RequestParam(value="search", required=false) String search) {
+	public ModelAndView search(@RequestParam(value="search", required=false) String search, ModelAndView model) {
 		List<Cliente> clientes = new ArrayList<Cliente>();
+		final List<ClienteVO> clientesVO = new ArrayList<ClienteVO>();
 		if (isNumber(search)) {
 			clientes.add(repository.findOne(Long.valueOf(search)));			
 		}else {
-			clientes = repository.findByNomeContaining(search);
+			clientes = repository.findByNomeContainingIgnoreCase(search);
 		}
-		
-		List<ClienteVO> clientesVO = new ArrayList<ClienteVO>();
-		for (Cliente cliente2 : clientes) {
-			clientesVO.add(new ClienteVO(cliente2));
+		if (clientes.size() != 0) {			
+			for (Cliente cliente2 : clientes) {
+				clientesVO.add(new ClienteVO(cliente2));
+			}
 		}
 
-		return clientesVO;
+		model.setViewName("tabela-alunos");
+		model.addObject("clientes", clientesVO);
+		return model;
 	}
-	
+
 	private boolean isNumber(String string) {
 	    try {
 	        Long.parseLong(string);

@@ -17,6 +17,7 @@
 package br.com.contratempo.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +28,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Cliente;
+import br.com.contratempo.entity.Modalidade;
 import br.com.contratempo.entity.Registro;
+import br.com.contratempo.repository.ModalidadeRepository;
 import br.com.contratempo.repository.RegistroRepository;
 import br.com.contratempo.vo.Login;
 
@@ -36,6 +39,9 @@ public class LoginController {
 	
 	@Autowired
     RegistroRepository repository;
+	
+	@Autowired
+    ModalidadeRepository modalidadeRepository;
 	
 	ArrayList<Registro> registros;
 	
@@ -86,8 +92,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/home")
-	public String home() {
-		return "home";
+	public ModelAndView home(ModelAndView model) {
+		List<Modalidade> modalidades = (List<Modalidade>) modalidadeRepository.findAll();
+		model.setViewName("home");
+		model.addObject("modalidades", modalidades);
+		return model;
 	}
 	
 	@RequestMapping("/about")

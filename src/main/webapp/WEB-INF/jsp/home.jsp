@@ -20,6 +20,12 @@
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
+
+
 <link href="css/home.css" rel="stylesheet" />
 </head>
 <body>
@@ -46,27 +52,30 @@
 		</div>
 	</nav>
 	<div class="panel-body" id="panel-body">
-		<div class="row">
-			<div class="col-sm-4 well">
-				<form:form id="register-form" action="cliente" method="POST" role="form" style="display: block;" modelAttribute="cliente">
-		                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Campos Obrigatório</strong></div>
+		<form:form id="register-form" action="cliente" method="POST"
+			role="form" style="display: block;" modelAttribute="cliente">
+			<div class="row">
+				<div class="col-sm-4 well">
+					<div class="well well-sm">
+						<strong><span class="glyphicon glyphicon-asterisk"></span>Campos
+							Obrigatório</strong>
+					</div>
 					<div class="form-group">
 						<label for="nome">Nome</label>
 						<div class="input-group">
-							 <input type="text" name="nome"
-								id="nome" tabindex="1" class="form-control" placeholder="Nome"
-								value="" required>
-							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-asterisk"></span>
+							<input type="text" name="nome" id="nome" tabindex="1"
+								class="form-control" placeholder="Nome" value="" required>
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-asterisk"></span>
 							</span>
-						</div>						
+						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<input type="tel" name="telefone" id="telefone" tabindex="1"
 								class="form-control" placeholder="Telefone" value="" required>
-							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-asterisk"></span>
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-asterisk"></span>
 							</span>
 						</div>
 					</div>
@@ -81,7 +90,7 @@
 					<div class="form-group">
 						<input type="text" name="endereco" id="endereco" tabindex="1"
 							class="form-control" placeholder="Endereco" value="">
-					</div>					
+					</div>
 					<div class="form-group">
 						<input type="text" name="profissao" id="profissao" tabindex="1"
 							class="form-control" placeholder="Profissão" value="">
@@ -96,7 +105,20 @@
 						<input type="date" name="dataNasc" id="dataNasc" tabindex="1"
 							class="form-control" placeholder="dataNasc" value="">
 					</div>
-
+					<div class="form-group">
+						<label for="sel1">Modalidades</label>
+						<form:select path="modalidades">
+						   <form:option value="NONE" label="--- Select ---"/>
+						   <form:options items="${countryList}" />
+						</form:select>
+						
+												
+						<select name="modalidades" class="selectpicker" id="sel1" multiple title="Escolha as modalidades"> 
+							<c:forEach items="${modalidades}" var="modalidade" varStatus="loopStatus">
+								<option value="${modalidade.id}" ><c:out value="${modalidade.nome}" /></option>
+							</c:forEach>							
+						</select>
+					</div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3">
@@ -106,9 +128,16 @@
 							</div>
 						</div>
 					</div>
-				</form:form>
-			</div>
-		</div>
+				</div>
+				<div class="col-sm-4 well">
+						<div class="form-group">
+							<ul class="list-group">
+								<li class="list-group-item">Cras justo odio</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+		</form:form>
 	</div>
 </body>
 <script type="text/javascript">
