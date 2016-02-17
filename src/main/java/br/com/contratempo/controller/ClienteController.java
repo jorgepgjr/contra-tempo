@@ -17,6 +17,7 @@
 package br.com.contratempo.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,13 +25,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Cliente;
 import br.com.contratempo.repository.ClienteRepository;
+import br.com.contratempo.vo.ClienteVO;
 
-@RequestMapping(name="/cliente")
 @Controller
+@RequestMapping("/cliente")
 public class ClienteController {
 	
 	@Autowired
@@ -38,17 +42,54 @@ public class ClienteController {
 	
 	ArrayList<Cliente> clientes;
 
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView cadastraCliente(@ModelAttribute Cliente cliente, Model model) {		
 		repository.save(cliente);
-		return new ModelAndView();
+		return new ModelAndView("redirect:/cliente");
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView consultaCliente(@ModelAttribute Cliente cliente, ModelAndView model) {
 		clientes = (ArrayList<Cliente>) repository.findAll();
+		if (clientes.size() == 0){			
+			repository.save(new Cliente("Jorge Peres", "jorgepgjr@gmail.com", "91132123", "https://goo.gl/IweKcl"));
+			repository.save(new Cliente("Erika Magno", "jorgeeomeuamor@gmail.com", "91132123", "https://goo.gl/IweKcl"));
+			repository.save(new Cliente("Dora Magno", "minhaSogra@gmail.com", "91132123", "https://goo.gl/IweKcl"));
+			repository.save(new Cliente("Aercio Peres Magno", "amoOJorge@gmail.com", "91132123", "https://goo.gl/IweKcl"));
+			clientes = (ArrayList<Cliente>) repository.findAll();
+		}
+		List<ClienteVO> clientesVO = new ArrayList<ClienteVO>();
+		for (Cliente cliente2 : clientes) {
+			clientesVO.add(new ClienteVO(cliente2));
+		}
 		model.setViewName("lista");
-		model.addObject("registros", clientes);
-		return new ModelAndView();
+		model.addObject("clientes", clientesVO);
+		return model;
+	}
+	
+	@RequestMapping( value="/search", method = RequestMethod.GET)
+	public @ResponseBody List<ClienteVO> search(@RequestParam(value="search", required=false) String search) {
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		if (isNumber(search)) {
+			clientes.add(repository.findOne(Long.valueOf(search)));			
+		}else {
+			clientes = repository.findByNomeContaining(search);
+		}
+		
+		List<ClienteVO> clientesVO = new ArrayList<ClienteVO>();
+		for (Cliente cliente2 : clientes) {
+			clientesVO.add(new ClienteVO(cliente2));
+		}
+
+		return clientesVO;
+	}
+	
+	private boolean isNumber(String string) {
+	    try {
+	        Long.parseLong(string);
+	    } catch (Exception e) {
+	        return false;
+	    }
+	    return true;
 	}
 }

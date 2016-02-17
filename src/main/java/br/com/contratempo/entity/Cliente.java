@@ -3,12 +3,17 @@ package br.com.contratempo.entity;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Cliente{
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long matricula;
 	private String nome;
 	private String rg;
@@ -17,18 +22,43 @@ public class Cliente{
 	private String telefone;
 	private String profissao;
 	private String comoConheceu;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Calendar dataNasc;
 	private char sexo;
+	private String fotoUrl;
 	//TODO: modalidades
 	
-	public String getName() {
-		return nome;
-	}
-	public void setName(String nome) {
+	public Cliente(String nome, String email, String telefone, String fotoUrl) {
+		super();
 		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.fotoUrl = fotoUrl;
 	}
+	
+	public String getFotoUrl() {
+		return fotoUrl;
+	}
+
+
+	public void setFotoUrl(String fotoUrl) {
+		this.fotoUrl = fotoUrl;
+	}
+
+
+	public Cliente() {
+		super();
+	}
+
 	public String getEndereco() {
 		return endereco;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
