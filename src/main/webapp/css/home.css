@@ -1,5 +1,7 @@
 body {
     background: black;
+    padding-top: 70px; 
+    /*Usado pois a Nav bar esta fixa*/
 }
 .btn-register {
 	background-color: #1CB94E;

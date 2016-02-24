@@ -3,14 +3,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
 <script type="text/javascript"
 	src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css">
 
-
-<!--  <h1>Clientes Salvos No Banco</h1>
-	 <h4>Numero de clientes: ${clientes.size()} </h4>
-	  -->
 <div class="row">
 	<div class="col-sm-12">
 		<div class="form-group">

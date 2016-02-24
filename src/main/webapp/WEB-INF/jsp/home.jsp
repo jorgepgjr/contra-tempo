@@ -5,31 +5,15 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Studio Contra-Tempo Dança e Bem estar</title>
-
-
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-	crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-	crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
-
-
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
 <link href="css/home.css" rel="stylesheet" />
+<script type="text/javascript"	src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap-select.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default" id="navigation">
+	<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -45,13 +29,14 @@
 					<li id="menu-modalidade"><a href="modalidade">Modalidade</a></li>
 					<li id="menu-professor"><a href="#">Professor</a></li>
 					<li id="menu-evento"><a href="#">Evento</a></li>
+					<li id="menu-turma"><a href="#">Turma</a></li>
 					<li id="menu-relatorio"><a href="#">Relatório</a></li>
 					<li id="menu-about"><a href="about">About</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<div class="panel-body" id="panel-body">
+	<div class="container" id="panel-body">
 		<form:form id="register-form" action="cliente" method="POST"
 			role="form" style="display: block;" modelAttribute="cliente">
 			<div class="row">
@@ -107,18 +92,15 @@
 					</div>
 					<div class="form-group">
 						<label for="sel1">Modalidades</label>
-						<form:select path="modalidades">
-						   <form:option value="NONE" label="--- Select ---"/>
-						   <form:options items="${countryList}" />
-						</form:select>
-						
-												
 						<select name="modalidades" class="selectpicker" id="sel1" multiple title="Escolha as modalidades"> 
 							<c:forEach items="${modalidades}" var="modalidade" varStatus="loopStatus">
-								<option value="${modalidade.id}" ><c:out value="${modalidade.nome}" /></option>
+								<option  value="${modalidade.id}" ><c:out value="${modalidade.nome}" /></option>
 							</c:forEach>							
 						</select>
 					</div>
+<!-- 					<div class="form-group"> -->
+<%-- 						<form:select multiple="true" path="modalidades" items="${modalidades}" itemLabel="nome" itemValue="id" /> --%>
+<!-- 					</div> -->
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3">
@@ -178,6 +160,17 @@
 			url : "cliente",
 			success : function(data) {
 				carregaTela(data, 'menu-aluno');
+			}
+		});
+		return false; // stop the browser following the link
+	});
+	
+	$("#menu-turma").click(function() {
+		$.ajax({
+			type : "GET",
+			url : "turma",
+			success : function(data) {
+				carregaTela(data, 'menu-turma');
 			}
 		});
 		return false; // stop the browser following the link

@@ -14,10 +14,11 @@ public class Professor{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private String fotoUrl;
 	private String nome;
 	private String telefone;
 	@OneToMany
-	private List<Modalidade> modalidades;
+	private List<Turma> turmas;
 	
 	public Professor(String nome) {
 		super();
@@ -25,12 +26,18 @@ public class Professor{
 	}	
 	public Professor() {
 		super();
+	}	
+	public List<Turma> getTurmas() {
+		return turmas;
 	}
-	public List<Modalidade> getModalidades() {
-		return modalidades;
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
 	}
-	public void setModalidades(List<Modalidade> modalidades) {
-		this.modalidades = modalidades;
+	public String getFotoUrl() {
+		return fotoUrl;
+	}
+	public void setFotoUrl(String fotoUrl) {
+		this.fotoUrl = fotoUrl;
 	}
 	public String getTelefone() {
 		return telefone;

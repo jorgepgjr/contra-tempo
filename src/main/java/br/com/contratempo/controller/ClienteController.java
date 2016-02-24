@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Cliente;
+import br.com.contratempo.entity.Modalidade;
 import br.com.contratempo.repository.ClienteRepository;
 import br.com.contratempo.vo.ClienteVO;
 
@@ -42,7 +43,7 @@ public class ClienteController {
 	ArrayList<Cliente> clientes;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView cadastraCliente(@ModelAttribute Cliente cliente, Model model) {		
+	public ModelAndView cadastraCliente(@ModelAttribute Cliente cliente, @RequestParam(value="modalidades") List<Modalidade> modalidades, Model model) {
 		repository.save(cliente);
 		return new ModelAndView("redirect:/cliente");
 	}

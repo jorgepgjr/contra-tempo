@@ -1,11 +1,13 @@
 package br.com.contratempo.entity;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,7 +16,7 @@ public class Cliente{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long matricula;
+	private Long id;
 	private String nome;
 	private String rg;
 	private String endereco;
@@ -27,7 +29,9 @@ public class Cliente{
 	private Calendar dataNasc;
 	private char sexo;
 	private String fotoUrl;
-	//TODO: modalidades
+	private Calendar dtCadastro;
+	@OneToMany
+	private List<Matricula> matriculas;
 	
 	public Cliente(String nome, String email, String telefone, String fotoUrl) {
 		super();
@@ -37,6 +41,18 @@ public class Cliente{
 		this.fotoUrl = fotoUrl;
 	}
 	
+	public Cliente() {
+		super();
+	}
+
+	public Calendar getDtCadastro() {
+		return dtCadastro;
+	}
+
+	public void setDtCadastro(Calendar dtCadastro) {
+		this.dtCadastro = dtCadastro;
+	}
+
 	public String getFotoUrl() {
 		return fotoUrl;
 	}
@@ -44,11 +60,6 @@ public class Cliente{
 
 	public void setFotoUrl(String fotoUrl) {
 		this.fotoUrl = fotoUrl;
-	}
-
-
-	public Cliente() {
-		super();
 	}
 
 	public String getEndereco() {
@@ -100,10 +111,10 @@ public class Cliente{
 		this.sexo = sexo;
 	}
 	public Long getMatricula() {
-		return matricula;
+		return id;
 	}
 	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
+		this.id = matricula;
 	}
 	public String getRg() {
 		return rg;
@@ -111,5 +122,14 @@ public class Cliente{
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
+	}
+	
 	
 }

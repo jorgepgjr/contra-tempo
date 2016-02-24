@@ -17,6 +17,7 @@
 package br.com.contratempo.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Modalidade;
+import br.com.contratempo.entity.Professor;
+import br.com.contratempo.entity.Turma;
 import br.com.contratempo.repository.ModalidadeRepository;
+import br.com.contratempo.repository.ProfessorRepository;
+import br.com.contratempo.repository.TurmaRepository;
 
 @Controller
 @RequestMapping("/modalidade")
@@ -36,12 +41,18 @@ public class ModalidadeController {
 	@Autowired
     ModalidadeRepository repository;
 	
+	@Autowired
+	TurmaRepository turmaRepository;
+	
+	@Autowired
+	ProfessorRepository professorRepository;
+	
 	ArrayList<Modalidade> modalidades;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView cadastraModalidade(@ModelAttribute Modalidade modalidade, Model model) {		
 		repository.save(modalidade);
-		return new ModelAndView("redirect:/cliente");
+		return new ModelAndView("redirect:/modalidade");
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -51,11 +62,17 @@ public class ModalidadeController {
 			repository.save(new Modalidade("Samba de Gafiera"));
 			repository.save(new Modalidade("Forro"));
 			repository.save(new Modalidade("Zouk"));
-			repository.save(new Modalidade("Forro 2"));
+			repository.save(new Modalidade("Forró"));
 			modalidades = (ArrayList<Modalidade>) repository.findAll();
 		}
+		
+		List<Turma> turmas = (List<Turma>) turmaRepository.findAll();
+		List<Professor> professores = (List<Professor>) professorRepository.findAll();
+		
 		model.setViewName("modalidade");
 		model.addObject("modalidades", modalidades);
+		model.addObject("turmas", turmas);
+		model.addObject("professores", professores);
 		return model;
 	}
 }

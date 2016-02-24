@@ -17,7 +17,10 @@
 package br.com.contratempo.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,9 +32,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Cliente;
 import br.com.contratempo.entity.Modalidade;
+import br.com.contratempo.entity.Professor;
 import br.com.contratempo.entity.Registro;
+import br.com.contratempo.entity.Turma;
 import br.com.contratempo.repository.ModalidadeRepository;
+import br.com.contratempo.repository.ProfessorRepository;
 import br.com.contratempo.repository.RegistroRepository;
+import br.com.contratempo.repository.TurmaRepository;
 import br.com.contratempo.vo.Login;
 
 @Controller
@@ -42,6 +49,12 @@ public class LoginController {
 	
 	@Autowired
     ModalidadeRepository modalidadeRepository;
+	
+	@Autowired
+	ProfessorRepository professorRepository;
+	
+	@Autowired
+	TurmaRepository turmaRepository;
 	
 	ArrayList<Registro> registros;
 	
@@ -87,13 +100,50 @@ public class LoginController {
 	
 	@RequestMapping("/limpar")
 	public ModelAndView limpar(ModelAndView model) {
-		repository.deleteAll();
+		modalidadeRepository.deleteAll();
 		return this.lista(model);
 	}
 	
 	@RequestMapping("/home")
 	public ModelAndView home(ModelAndView model) {
 		List<Modalidade> modalidades = (List<Modalidade>) modalidadeRepository.findAll();
+		if (modalidades.size() == 0){			
+			modalidadeRepository.save(new Modalidade("Samba de Gafiera"));
+			modalidadeRepository.save(new Modalidade("Forro"));
+			modalidadeRepository.save(new Modalidade("Bolero"));
+			modalidadeRepository.save(new Modalidade("Zouk"));
+			modalidades = (ArrayList<Modalidade>) modalidadeRepository.findAll();
+		}
+		if (professorRepository.count() == 0) {
+			professorRepository.save(new Professor("Cristhopher"));
+			professorRepository.save(new Professor("Aercio"));
+		}
+		if (turmaRepository.count() == 0) {
+			Turma turma1 = new Turma();
+			Turma turma2 = new Turma();
+			List<Modalidade> modalidadesTurma = new ArrayList<Modalidade>();
+			modalidadesTurma.add(modalidades.get(0));
+			modalidadesTurma.add(modalidades.get(1));
+			modalidadesTurma.add(modalidades.get(2));
+			turma1.setProfessor(professorRepository.findOne(0L));
+			turma1.setModalidades(modalidadesTurma);
+			turma1.setNome("Dança de Salão");
+			Calendar date = new GregorianCalendar(2016, Calendar.MAY, 7,20,30);			
+			date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, new Locale ("pt", "BR"));
+			System.out.println(date.getTime());
+			System.out.println(date.get(Calendar.DAY_OF_WEEK));
+			
+			turma1.setHorario(date);
+			
+			turma2.setModalidades(modalidadesTurma);
+			turma2.setNome("Dança de Salão 1");
+			turma2.setProfessor(professorRepository.findOne(1L));
+			turma2.setHorario(new GregorianCalendar(2016, Calendar.MAY, 7,21,30));
+
+			turmaRepository.save(turma1);
+			turmaRepository.save(turma2);
+		}
+		
 		model.setViewName("home");
 		model.addObject("modalidades", modalidades);
 		return model;
