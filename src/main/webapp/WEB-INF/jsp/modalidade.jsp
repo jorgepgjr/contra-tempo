@@ -11,16 +11,18 @@
 <div class="row">
 	<div class="col-sm-6 well">
 		<h2>Turmas</h2>
+		<div class="form-group">
 		<c:forEach items="${turmas}" var="turma" varStatus="loopStatus">
-			<button type="button" class="btn btn-default">
+			<button type="button" class="btn btn-default turmaBtn" id=${turma.id}>
 				<c:out value="${turma.nome}" />
 			</button>
-		</c:forEach>
-		<form:form id="register-form" class="form-horizontal" action="turma"
+		</c:forEach>		
+		</div>
+		<form:form id="turma-form" class="form-horizontal" action="turma"
 			method="POST" role="form" modelAttribute="turma">
 			<div class="form-group">
-				<label class="control-label" for="nome">Nome:</label>
-				<div class="input-group">
+				<label class="col-sm-4 control-label" for="nome">Nome:</label>
+				<div class="input-group col-sm-8">
 					<input type="text" name="nome" id="nome" tabindex="1"
 						class="form-control" placeholder="Nome" value="" required>
 					<span class="input-group-addon"> <span
@@ -46,8 +48,19 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<div class="input-group clockpicker" data-autoclose="true">
-					<input type="text" class="form-control" value="19:00"> <span
+				<label class="col-sm-4 control-label" for="dia">Horário:</label> 
+				<select	name="dia" class="selectpicker col-sm-4" id="dia"
+						title="Dia da Semana">
+						<option value="2">Segunda</option>
+						<option value="3">Terça</option>
+						<option value="4">Quarta</option>
+						<option value="5">Quinta</option>
+						<option value="6">Sexta</option>
+						<option value="7">Sábado</option>
+						<option value="1">Domingo</option>
+					</select>
+				<div class="col-sm-4 input-group clockpicker" data-autoclose="true">
+					<input type="text" class="form-control" value="19:00" name="horario"> <span
 						class="input-group-addon"> <span
 						class="glyphicon glyphicon-time"></span>
 					</span>
@@ -55,7 +68,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label" for="sel2">Professor</label> <select
-					name="professores" class="selectpicker col-sm-8" id="sel2"
+					name="professor" class="selectpicker col-sm-8" id="sel2"
 					title="Escolha o Professor">
 					<c:forEach items="${professores}" var="professore"
 						varStatus="loopStatus">
@@ -65,19 +78,15 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-4">
-					<label for="sel1">Modalidades</label>
-				</div>
-				<div class="col-sm-8">
-					<select name="modalidades" class="selectpicker" id="sel1" multiple
-						title="Escolha as modalidades">
-						<c:forEach items="${modalidades}" var="modalidade"
-							varStatus="loopStatus">
-							<option value="${modalidade.id}"><c:out
-									value="${modalidade.nome}" /></option>
-						</c:forEach>
-					</select>
-				</div>
+				<label class="col-sm-4 control-label" for="sel1">Modalidades</label>
+				<select name="modalidades" class="selectpicker col-sm-8" id="sel1" multiple
+					title="Escolha as modalidades">
+					<c:forEach items="${modalidades}" var="modalidade"
+						varStatus="loopStatus">
+						<option value="${modalidade.id}"><c:out
+								value="${modalidade.nome}" /></option>
+					</c:forEach>
+				</select>
 			</div>
 			<div class="form-group">
 				<div class="row">
@@ -110,4 +119,4 @@
 	</div>
 </div>
 <script type="text/javascript" src="bootstrap/js/bootstrap-clockpicker.min.js"></script>
-<script type="text/javascript"	src="js/modalidade.js"></script>
+<script type="text/javascript"	src="js/turma.js"></script>

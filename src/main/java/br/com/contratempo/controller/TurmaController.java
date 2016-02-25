@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,10 +34,10 @@ import br.com.contratempo.entity.Turma;
 import br.com.contratempo.repository.ModalidadeRepository;
 import br.com.contratempo.repository.ProfessorRepository;
 import br.com.contratempo.repository.TurmaRepository;
+import br.com.contratempo.vo.TurmaVO;
 
 @Controller
-@RequestMapping("/modalidade")
-public class ModalidadeController {
+public class TurmaController {
 	
 	@Autowired
     ModalidadeRepository repository;
@@ -49,13 +50,20 @@ public class ModalidadeController {
 	
 	ArrayList<Modalidade> modalidades;
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/modalidade",  method = RequestMethod.POST)
 	public ModelAndView cadastraModalidade(@ModelAttribute Modalidade modalidade, Model model) {		
 		repository.save(modalidade);
-		return new ModelAndView("redirect:/modalidade");
+		return new ModelAndView("redirect:/turma");
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/turma",  method = RequestMethod.POST)
+	public ModelAndView cadastraTurma(@ModelAttribute TurmaVO turma, Model model) {		
+		Turma novaTurma = new Turma(turma);
+		turmaRepository.save(novaTurma);
+		return new ModelAndView("redirect:/turma");
+	}
+	
+	@RequestMapping(value="/turma", method = RequestMethod.GET)
 	public ModelAndView consultaModalidade(@ModelAttribute Modalidade modalidade, ModelAndView model) {
 		modalidades = (ArrayList<Modalidade>) repository.findAll();
 		if (modalidades.size() == 0){			
@@ -75,4 +83,14 @@ public class ModalidadeController {
 		model.addObject("professores", professores);
 		return model;
 	}
+	@RequestMapping(value="/turma/{id}",  method = RequestMethod.GET)
+	public ModelAndView detalhesTurma(@PathVariable("id") Long id) {	
+		Turma turma = (Turma) turmaRepository.findOne(id);
+		
+		ModelAndView model = new ModelAndView();
+		model.setViewName("turma-detalhe");
+		model.addObject("turma", turma);
+		return model;
+	}
+	
 }

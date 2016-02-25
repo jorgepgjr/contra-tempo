@@ -25,8 +25,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active" id="menu-aluno"><a href="#">Aluno</a></li>
-					<li id="menu-modalidade"><a href="modalidade">Modalidade</a></li>
+					<li class="active" id="menu-aluno"><a href="aluno">Aluno</a></li>
+					<li id="menu-turma"><a href="turma">Turma</a></li>
 					<li id="menu-professor"><a href="#">Professor</a></li>
 					<li id="menu-evento"><a href="#">Evento</a></li>
 					<li id="menu-turma"><a href="#">Turma</a></li>
@@ -143,12 +143,12 @@
 		}
 	}
 
-	$("#menu-modalidade").click(function() {
+	$("#menu-turma").click(function() {
 		$.ajax({
 			type : "GET",
-			url : "modalidade",
+			url : "turma",
 			success : function(data) {
-				carregaTela(data, 'menu-modalidade');
+				carregaTela(data, 'menu-turma');
 			}
 		});
 		return false; // stop the browser following the link

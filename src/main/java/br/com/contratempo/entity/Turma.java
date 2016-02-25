@@ -1,6 +1,7 @@
 package br.com.contratempo.entity;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import br.com.contratempo.vo.TurmaVO;
 
 @Entity
 public class Turma {
@@ -23,8 +26,7 @@ public class Turma {
 	@OneToOne
 	private Professor professor;
 	private String sala;
-	private String nome;
-	
+	private String nome;	
 	/**
 	 * Baseado na primeira semana de maio de 2016 onde o dia 1 == Domingo e o dia 7 == Sabado
 	 */
@@ -35,6 +37,17 @@ public class Turma {
 
 	public Turma() {
 		super();
+	}
+	
+	public Turma(TurmaVO turmaVO) {
+		super();
+		this.modalidades = turmaVO.getModalidades();
+		this.professor = turmaVO.getProfessor();
+		this.sala = turmaVO.getSala();
+		this.nome = turmaVO.getNome();
+		this.nivel = turmaVO.getNivel();
+		this.ativa = true;
+		this.horario = new GregorianCalendar(2016, Calendar.MAY, turmaVO.getDia(),turmaVO.getHora(),turmaVO.getMinuto());
 	}
 
 	public Long getId() {
