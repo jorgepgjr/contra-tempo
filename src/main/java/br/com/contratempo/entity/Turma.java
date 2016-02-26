@@ -17,7 +17,10 @@ import br.com.contratempo.vo.TurmaVO;
 
 @Entity
 public class Turma {
-
+	
+	public static String SALA1 = "Sala 1";
+	public static String SALA2 = "Sala 2";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

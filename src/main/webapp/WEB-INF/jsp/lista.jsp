@@ -3,12 +3,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css">
+<link href="css/home.css" rel="stylesheet" />
 
-<script type="text/javascript"
-	src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css">
-
-<div class="row">
+<div class="row well">
 	<div class="col-sm-12">
 		<div class="form-group">
 			<form class="navbar-form" role="search" id="search-form">
@@ -21,6 +20,8 @@
 					</span>
 				</div>
 			</form>
+		</div>
+		<div class="col-sm-12">
 			<div class="input-group" id="tabela-alunos">
 				<table class="table table-striped" id="table-aluno">
 					<thead>
@@ -33,7 +34,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${clientes}" var="cliente" varStatus="loopStatus">
+						<c:forEach items="${clientes}" var="cliente"
+							varStatus="loopStatus">
 							<tr>
 								<td><c:out value="${cliente.matricula}" /></td>
 								<td><c:out value="${cliente.nome}" /></td>
@@ -50,3 +52,5 @@
 	</div>
 </div>
 <script type="text/javascript" src="js/aluno-list.js"></script>
+<script type="text/javascript"
+	src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"></script>

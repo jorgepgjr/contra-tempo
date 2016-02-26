@@ -51,13 +51,6 @@ public class ClienteController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView consultaCliente(@ModelAttribute Cliente cliente, ModelAndView model) {
 		clientes = (ArrayList<Cliente>) repository.findAll();
-		if (clientes.size() == 0){			
-			repository.save(new Cliente("Jorge Peres", "jorgepgjr@gmail.com", "91132123", "https://goo.gl/IweKcl"));
-			repository.save(new Cliente("Erika Magno", "jorgeeomeuamor@gmail.com", "91132123", "https://goo.gl/IweKcl"));
-			repository.save(new Cliente("Dora Magno", "minhaSogra@gmail.com", "91132123", "https://goo.gl/IweKcl"));
-			repository.save(new Cliente("Aercio Peres Magno", "amoOJorge@gmail.com", "91132123", "https://goo.gl/IweKcl"));
-			clientes = (ArrayList<Cliente>) repository.findAll();
-		}
 		List<ClienteVO> clientesVO = new ArrayList<ClienteVO>();
 		for (Cliente cliente2 : clientes) {
 			clientesVO.add(new ClienteVO(cliente2));

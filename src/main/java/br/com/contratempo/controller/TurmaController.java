@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.contratempo.entity.Modalidade;
 import br.com.contratempo.entity.Professor;
 import br.com.contratempo.entity.Turma;
+import br.com.contratempo.repository.MatriculaRepository;
 import br.com.contratempo.repository.ModalidadeRepository;
 import br.com.contratempo.repository.ProfessorRepository;
 import br.com.contratempo.repository.TurmaRepository;
@@ -47,6 +48,10 @@ public class TurmaController {
 	
 	@Autowired
 	ProfessorRepository professorRepository;
+	
+	@Autowired
+	MatriculaRepository matriculaRepository;
+	
 	
 	ArrayList<Modalidade> modalidades;
 
@@ -77,6 +82,7 @@ public class TurmaController {
 		List<Turma> turmas = (List<Turma>) turmaRepository.findAll();
 		List<Professor> professores = (List<Professor>) professorRepository.findAll();
 		
+		
 		model.setViewName("modalidade");
 		model.addObject("modalidades", modalidades);
 		model.addObject("turmas", turmas);
@@ -85,11 +91,14 @@ public class TurmaController {
 	}
 	@RequestMapping(value="/turma/{id}",  method = RequestMethod.GET)
 	public ModelAndView detalhesTurma(@PathVariable("id") Long id) {	
-		Turma turma = (Turma) turmaRepository.findOne(id);
+		final Turma turma = (Turma) turmaRepository.findOne(id);
+		final TurmaVO turmaVO = new TurmaVO(turma);
+		
+		matriculaRepository.findByTurma_id(turma.getId());
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("turma-detalhe");
-		model.addObject("turma", turma);
+		model.addObject("turma", turmaVO);
 		return model;
 	}
 	

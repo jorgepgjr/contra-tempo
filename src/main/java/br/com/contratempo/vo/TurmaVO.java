@@ -1,26 +1,56 @@
 package br.com.contratempo.vo;
 
+import java.util.Calendar;
 import java.util.List;
 
+import br.com.contratempo.entity.Cliente;
 import br.com.contratempo.entity.Modalidade;
 import br.com.contratempo.entity.Professor;
+import br.com.contratempo.entity.Turma;
 
 public class TurmaVO {
 
+	private Long id;
 	private List<Modalidade> modalidades;
 	private Professor professor;
 	private String sala;
 	private String nome;
 	private String nivel;
+	private Calendar diaEHora;
+	
+	/**
+	 * Para insercao no BD 
+	 */
 	private int dia;
 	private String horario;
 	
+	
+	/*
+	 * Detalhes
+	 */
+	private List<Cliente> alunos;	
+
 	public int getHora(){
 		return Integer.valueOf(horario.split(":")[0]);
 	}
 	
 	public int getMinuto(){
 		return Integer.valueOf(horario.split(":")[1]);
+	}
+
+	public TurmaVO(Turma turma) {
+		super();
+		this.id = turma.getId();
+		this.modalidades = turma.getModalidades();
+		this.professor = turma.getProfessor();
+		this.sala = turma.getSala();
+		this.nome = turma.getNome();
+		this.nivel = turma.getNivel();
+		this.diaEHora = turma.getHorario();
+	}
+
+	public TurmaVO() {
+		super();
 	}
 
 	public List<Modalidade> getModalidades() {
@@ -78,4 +108,29 @@ public class TurmaVO {
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Cliente> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Cliente> alunos) {
+		this.alunos = alunos;
+	}
+
+	public Calendar getDiaEHora() {
+		return diaEHora;
+	}
+
+	public void setDiaEHora(Calendar diaEHora) {
+		this.diaEHora = diaEHora;
+	}
+
 }
