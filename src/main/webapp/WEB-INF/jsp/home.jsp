@@ -91,10 +91,10 @@
 							class="form-control" placeholder="dataNasc" value="">
 					</div>
 					<div class="form-group">
-						<label for="sel1">Modalidades</label>
-						<select name="modalidades" class="selectpicker" id="sel1" multiple title="Escolha as modalidades"> 
-							<c:forEach items="${modalidades}" var="modalidade" varStatus="loopStatus">
-								<option  value="${modalidade.id}" ><c:out value="${modalidade.nome}" /></option>
+						<label for="sel1">Trumas</label>
+						<select name="turmas" class="selectpicker" id="sel1" multiple title="Escolha as turmas"> 
+							<c:forEach items="${turmas}" var="turma" varStatus="loopStatus">
+								<option  value="${turma.id}" ><c:out value="${turma.nome}" /></option>
 							</c:forEach>							
 						</select>
 					</div>

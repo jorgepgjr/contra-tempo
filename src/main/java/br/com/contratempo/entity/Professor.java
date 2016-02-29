@@ -17,8 +17,9 @@ public class Professor{
 	private String fotoUrl;
 	private String nome;
 	private String telefone;
-	@OneToMany
+	@OneToMany(mappedBy="professor")
 	private List<Turma> turmas;
+	private boolean ativo;
 	
 	public Professor(String nome) {
 		super();
@@ -57,6 +58,10 @@ public class Professor{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
+	public boolean isAtivo() {
+		return ativo;
+	}
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}	
 }

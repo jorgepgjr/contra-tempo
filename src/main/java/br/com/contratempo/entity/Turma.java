@@ -9,7 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,7 +27,8 @@ public class Turma {
 	private Long id;
 	@ManyToMany
 	private List<Modalidade> modalidades;
-	@OneToOne
+	
+	@ManyToOne
 	private Professor professor;
 	private String sala;
 	private String nome;	
@@ -37,6 +39,9 @@ public class Turma {
 	private Calendar horario;
 	private boolean ativa;	
 	private String nivel;
+	
+	@OneToMany(mappedBy= "turma")
+	private List<Matricula> matriculas;
 
 	public Turma() {
 		super();
@@ -115,6 +120,14 @@ public class Turma {
 
 	public void setSala(String sala) {
 		this.sala = sala;
+	}
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
 
 }

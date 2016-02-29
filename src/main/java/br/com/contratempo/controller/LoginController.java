@@ -114,12 +114,10 @@ public class LoginController {
 	
 	@RequestMapping("/home")
 	public ModelAndView home(ModelAndView model) {
-		List<Modalidade> modalidades = (List<Modalidade>) modalidadeRepository.findAll();
-		if (modalidades.size() == 0){
-			this.populaOBanco();
-		}
+		this.populaOBanco();
+		List<Turma> turmas = (List<Turma>) turmaRepository.findAll();
 		model.setViewName("home");
-		model.addObject("modalidades", modalidades);
+		model.addObject("turmas", turmas);
 		return model;
 	}
 	
@@ -128,6 +126,7 @@ public class LoginController {
 		return "about";
 	}
 	
+	//TODO: Remover quando for rodar a aplicacao
 	private void populaOBanco(){
 		List<Modalidade> modalidades = (List<Modalidade>) modalidadeRepository.findAll();
 		if (modalidades.size() == 0){			
@@ -150,14 +149,14 @@ public class LoginController {
 			modalidadesTurma.add(modalidades.get(2));
 			Calendar date = new GregorianCalendar(2016, Calendar.MAY, 7,20,30);
 			
-			turma1.setProfessor(professorRepository.findOne(0L));
+			turma1.setProfessor(professorRepository.findOne(1L));
 			turma1.setModalidades(modalidadesTurma);
 			turma1.setNome("Dança de Salão");
 			turma1.setHorario(date);
 			turma1.setNivel("0");
 			turma1.setSala(Turma.SALA2);
 			
-			turma2.setProfessor(professorRepository.findOne(1L));
+			turma2.setProfessor(professorRepository.findOne(2L));
 			turma2.setModalidades(modalidadesTurma);
 			turma2.setNome("Dança de Salão 1");
 			turma2.setHorario(new GregorianCalendar(2016, Calendar.MAY, 7,21,30));
@@ -177,37 +176,38 @@ public class LoginController {
 		if(matriculaRepository.count() == 0){
 			Calendar vencimento = Calendar.getInstance();
 			vencimento.add(Calendar.MONTH, 1);
-			System.out.println(vencimento);
 			
 			Calendar today = Calendar.getInstance();
 			today.set(Calendar.HOUR_OF_DAY, 0);
 			
 			Matricula matricula = new Matricula();
 			matricula.setAtiva(true);
-			matricula.setCliente(clienteRepository.findOne(0L));
 			matricula.setDtInicio(today);
 			matricula.setDtFim(vencimento);
-			matricula.setPago(false);
-			matricula.setTurma(turmaRepository.findOne(0L));
+			matricula.setPago(true);
+			matricula.setCliente(clienteRepository.findOne(1L));
+			matricula.setTurma(turmaRepository.findOne(1L));
 			matricula.setValor(Double.valueOf(75));
 			
-			Matricula matricula2 = matricula;
-			matricula2.setCliente(clienteRepository.findOne(1L));
-			matricula2.setTurma(turmaRepository.findOne(0L));
+			Matricula matricula2 = new Matricula(matricula);
+			matricula2.setCliente(clienteRepository.findOne(2L));
+			matricula2.setTurma(turmaRepository.findOne(1L));
+			matricula2.setPago(false);
 			
-			Matricula matricula3 = matricula;
-			matricula3.setCliente(clienteRepository.findOne(2L));
-			matricula3.setTurma(turmaRepository.findOne(1L));
+			Matricula matricula3 = new Matricula(matricula);
+			matricula3.setCliente(clienteRepository.findOne(3L));
+			matricula3.setTurma(turmaRepository.findOne(2L));
+			matricula3.setPago(true);
 			
-			Matricula matricula4 = matricula;
-			matricula4.setCliente(clienteRepository.findOne(3L));
-			matricula4.setTurma(turmaRepository.findOne(1L));
+			Matricula matricula4 = new Matricula(matricula);
+			matricula4.setCliente(clienteRepository.findOne(4L));
+			matricula4.setTurma(turmaRepository.findOne(2L));
+			matricula4.setPago(false);
 			
 			matriculaRepository.save(matricula);
 			matriculaRepository.save(matricula2);
 			matriculaRepository.save(matricula3);
 			matriculaRepository.save(matricula4);
-			//TODO: esta salvando apenas uma matricula
 		}
 		
 		

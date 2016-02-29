@@ -71,30 +71,20 @@ public class TurmaController {
 	@RequestMapping(value="/turma", method = RequestMethod.GET)
 	public ModelAndView consultaModalidade(@ModelAttribute Modalidade modalidade, ModelAndView model) {
 		modalidades = (ArrayList<Modalidade>) repository.findAll();
-		if (modalidades.size() == 0){			
-			repository.save(new Modalidade("Samba de Gafiera"));
-			repository.save(new Modalidade("Forro"));
-			repository.save(new Modalidade("Zouk"));
-			repository.save(new Modalidade("Forró"));
-			modalidades = (ArrayList<Modalidade>) repository.findAll();
-		}
-		
 		List<Turma> turmas = (List<Turma>) turmaRepository.findAll();
 		List<Professor> professores = (List<Professor>) professorRepository.findAll();
-		
-		
+
 		model.setViewName("modalidade");
 		model.addObject("modalidades", modalidades);
 		model.addObject("turmas", turmas);
 		model.addObject("professores", professores);
 		return model;
 	}
+	
 	@RequestMapping(value="/turma/{id}",  method = RequestMethod.GET)
 	public ModelAndView detalhesTurma(@PathVariable("id") Long id) {	
-		final Turma turma = (Turma) turmaRepository.findOne(id);
-		final TurmaVO turmaVO = new TurmaVO(turma);
-		
-		matriculaRepository.findByTurma_id(turma.getId());
+		final Turma turma = (Turma) turmaRepository.findOne(id);		
+		final TurmaVO turmaVO = new TurmaVO(turma);		
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("turma-detalhe");

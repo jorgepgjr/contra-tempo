@@ -3,7 +3,7 @@ package br.com.contratempo.vo;
 import java.util.Calendar;
 import java.util.List;
 
-import br.com.contratempo.entity.Cliente;
+import br.com.contratempo.entity.Matricula;
 import br.com.contratempo.entity.Modalidade;
 import br.com.contratempo.entity.Professor;
 import br.com.contratempo.entity.Turma;
@@ -28,7 +28,7 @@ public class TurmaVO {
 	/*
 	 * Detalhes
 	 */
-	private List<Cliente> alunos;	
+	private List<Matricula> matriculas;	
 
 	public int getHora(){
 		return Integer.valueOf(horario.split(":")[0]);
@@ -47,6 +47,7 @@ public class TurmaVO {
 		this.nome = turma.getNome();
 		this.nivel = turma.getNivel();
 		this.diaEHora = turma.getHorario();
+		this.matriculas = turma.getMatriculas();
 	}
 
 	public TurmaVO() {
@@ -117,12 +118,12 @@ public class TurmaVO {
 		this.id = id;
 	}
 
-	public List<Cliente> getAlunos() {
-		return alunos;
+	public List<Matricula> getMatriculas() {
+		return matriculas;
 	}
 
-	public void setAlunos(List<Cliente> alunos) {
-		this.alunos = alunos;
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
 
 	public Calendar getDiaEHora() {

@@ -34,6 +34,25 @@ public class Matricula{
 	private Double valor;
 	private boolean ativa;
 	private boolean pago;
+	
+	public Matricula() {
+		super();
+	}
+		
+	/**
+	 * Usado para os testes, clona uma matricula
+	 * @param matricula
+	 */
+	public Matricula(Matricula matricula) {
+		this.cliente = matricula.cliente;
+		this.turma = matricula.turma;
+		this.dtInicio = matricula.dtInicio;
+		this.dtFim = matricula.dtFim;
+		this.valor = matricula.valor;
+		this.ativa = matricula.ativa;
+		this.pago = matricula.pago;
+	}
+
 
 	public Long getId() {
 		return id;
