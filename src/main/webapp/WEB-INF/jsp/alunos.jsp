@@ -23,34 +23,15 @@
 		</div>
 		<div class="col-sm-12">
 			<div class="input-group" id="tabela-alunos">
-				<table class="table table-striped" id="table-aluno">
-					<thead>
-						<tr>
-							<th data-field="matricula">Matricula</th>
-							<th data-field="nome">Nome</th>
-							<th data-field="telefone">Telefone</th>
-							<th data-field="email">Email</th>
-							<th data-field="fotoUrl">Foto</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${clientes}" var="cliente"
-							varStatus="loopStatus">
-							<tr>
-								<td><c:out value="${cliente.matricula}" /></td>
-								<td><c:out value="${cliente.nome}" /></td>
-								<td><c:out value="${cliente.telefone}" /></td>
-								<td><c:out value="${cliente.email}" /></td>
-								<td><img src="https://goo.gl/IweKcl" class="img-rounded"
-									alt="Cinque Terre" width="50" height="50"></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+			<jsp:include page="tabela-alunos.jsp" />
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="js/aluno-list.js"></script>
+
+<div class="row well">
+	<div id="detalhe-aluno">
+	</div>
+</div>
 <script type="text/javascript"
 	src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"></script>

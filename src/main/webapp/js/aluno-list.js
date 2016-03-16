@@ -7,31 +7,22 @@ $(document).ready(function() {
 	};
 	
 	function carregaTabela(value) {
-		debugger;
 		$('#table-aluno').bootstrapTable({
 			data : value
 		})
 	};
 	
-//	$("#search-form").submit(function(event) {
-//		debugger;
-//		event.preventDefault();
-//		var formData = $("#search-form").serialize();
-//		$.ajax({
-//			type : "GET",
-//			url : "cliente/search",
-//			data : formData,
-//			success : carregaTabela
-//		}).done(function(response) {
-//			$('#table-aluno').bootstrapTable({
-//				data : response
-//			});
-//	
-//		});
-//	});
-	
+	$(".clickable-row").click(function() {
+		$.ajax({
+			type : "GET",
+			url : "cliente/"+$(this).data("href"),
+			success : function(data) {
+				$("#detalhe-aluno").empty();
+				$("#detalhe-aluno").html(data);
+			}
+		});
+    });	
 	$("#search-form").submit(function(event) {
-		debugger;
 		event.preventDefault();
 		var formData = $("#search-form").serialize();
 		$.ajax({
@@ -44,5 +35,21 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
 });
+
+//$("#search-form").submit(function(event) {
+//debugger;
+//event.preventDefault();
+//var formData = $("#search-form").serialize();
+//$.ajax({
+//	type : "GET",
+//	url : "cliente/search",
+//	data : formData,
+//	success : carregaTabela
+//}).done(function(response) {
+//	$('#table-aluno').bootstrapTable({
+//		data : response
+//	});
+//
+//});
+//});

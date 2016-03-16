@@ -20,3 +20,4 @@ body {
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+tr.clickable-row { cursor: pointer;}

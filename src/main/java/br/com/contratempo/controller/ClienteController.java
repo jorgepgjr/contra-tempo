@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,6 +49,13 @@ public class ClienteController {
 		return new ModelAndView("redirect:/cliente");
 	}
 	
+	//TODO: trocar para PUT e configurar
+	@RequestMapping(value="/{id}",  method = RequestMethod.POST)
+	public void updateCliente(@PathVariable("id") Long id,@ModelAttribute Cliente cliente) {
+		cliente.setId(id);
+		repository.save(cliente);
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView consultaCliente(@ModelAttribute Cliente cliente, ModelAndView model) {
 		clientes = (ArrayList<Cliente>) repository.findAll();
@@ -55,12 +63,12 @@ public class ClienteController {
 		for (Cliente cliente2 : clientes) {
 			clientesVO.add(new ClienteVO(cliente2));
 		}
-		model.setViewName("lista");
+		model.setViewName("alunos");
 		model.addObject("clientes", clientesVO);
 		return model;
 	}
 	
-	@RequestMapping( value="/search", method = RequestMethod.GET)
+	@RequestMapping(value="/search", method = RequestMethod.GET)
 	public ModelAndView search(@RequestParam(value="search", required=false) String search, ModelAndView model) {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		final List<ClienteVO> clientesVO = new ArrayList<ClienteVO>();
@@ -77,6 +85,15 @@ public class ClienteController {
 
 		model.setViewName("tabela-alunos");
 		model.addObject("clientes", clientesVO);
+		return model;
+	}
+	
+	@RequestMapping(value="/{id}",  method = RequestMethod.GET)
+	public ModelAndView detalhesTurma(@PathVariable("id") Long id) {	
+		Cliente cliente = repository.findOne(id);
+		ModelAndView model = new ModelAndView();
+		model.setViewName("aluno/aluno-detalhe");
+		model.addObject("clienteDetalhe", cliente);
 		return model;
 	}
 

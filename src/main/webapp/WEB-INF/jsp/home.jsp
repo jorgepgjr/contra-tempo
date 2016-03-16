@@ -29,7 +29,6 @@
 					<li id="menu-turma"><a href="turma">Turma</a></li>
 					<li id="menu-professor"><a href="#">Professor</a></li>
 					<li id="menu-evento"><a href="#">Evento</a></li>
-					<li id="menu-turma"><a href="#">Turma</a></li>
 					<li id="menu-relatorio"><a href="#">Relatório</a></li>
 					<li id="menu-about"><a href="about">About</a></li>
 				</ul>

@@ -170,7 +170,9 @@ public class LoginController {
 			clienteRepository.save(new Cliente("Jorge Peres", "jorgepgjr@gmail.com", "91132123", "https://goo.gl/IweKcl"));
 			clienteRepository.save(new Cliente("Erika Magno", "jorgeeomeuamor@gmail.com", "91132123", "https://goo.gl/IweKcl"));
 			clienteRepository.save(new Cliente("Dora Magno", "minhaSogra@gmail.com", "91132123", "https://goo.gl/IweKcl"));
-			clienteRepository.save(new Cliente("Aercio Peres Magno", "amoOJorge@gmail.com", "91132123", "https://goo.gl/IweKcl"));			
+			clienteRepository.save(new Cliente("Aercio Peres Magno", "amoOJorge@gmail.com", "91132123", "https://goo.gl/IweKcl"));
+			clienteRepository.save(new Cliente("Jorge Full","312312312312","Rua Tocantins 77 apt 171","jorgepgjr@gmail.com","9932139123",
+					"Reporter","internet",Calendar.getInstance(),'M',"https://goo.gl/IweKcl",Calendar.getInstance()));
 		}
 		
 		if(matriculaRepository.count() == 0){

@@ -30,7 +30,8 @@ public class Cliente{
 	private char sexo;
 	private String fotoUrl;
 	private Calendar dtCadastro;
-	@OneToMany
+
+	@OneToMany(mappedBy= "cliente")
 	private List<Matricula> matriculas;
 	
 	public Cliente(String nome, String email, String telefone, String fotoUrl) {
@@ -41,6 +42,27 @@ public class Cliente{
 		this.fotoUrl = fotoUrl;
 	}
 	
+	
+	
+	public Cliente(String nome, String rg, String endereco, String email,
+			String telefone, String profissao, String comoConheceu,
+			Calendar dataNasc, char sexo, String fotoUrl, Calendar dtCadastro) {
+		super();
+		this.nome = nome;
+		this.rg = rg;
+		this.endereco = endereco;
+		this.email = email;
+		this.telefone = telefone;
+		this.profissao = profissao;
+		this.comoConheceu = comoConheceu;
+		this.dataNasc = dataNasc;
+		this.sexo = sexo;
+		this.fotoUrl = fotoUrl;
+		this.dtCadastro = dtCadastro;
+	}
+
+
+
 	public Cliente() {
 		super();
 	}
@@ -110,12 +132,6 @@ public class Cliente{
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-	public Long getMatricula() {
-		return id;
-	}
-	public void setMatricula(Long matricula) {
-		this.id = matricula;
-	}
 	public String getRg() {
 		return rg;
 	}
@@ -130,6 +146,10 @@ public class Cliente{
 	public void setMatriculas(List<Matricula> matriculas) {
 		this.matriculas = matriculas;
 	}
-	
-	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
