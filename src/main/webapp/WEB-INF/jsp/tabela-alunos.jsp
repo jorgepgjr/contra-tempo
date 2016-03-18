@@ -14,8 +14,8 @@
 					<tbody>
 						<c:forEach items="${clientes}" var="cliente"
 							varStatus="loopStatus">
-							<tr class="clickable-row" data-href='${cliente.matricula}'>
-								<td><c:out value="${cliente.matricula}" /></td>
+							<tr class="clickable-row" data-href='${cliente.id}'>
+								<td><c:out value="${cliente.id}" /></td>
 								<td><c:out value="${cliente.nome}" /></td>
 								<td><img src="https://goo.gl/IweKcl" class="img-rounded"
 									alt="Cinque Terre" width="50" height="50"></td>

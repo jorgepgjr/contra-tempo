@@ -51,7 +51,7 @@
 					<tbody>
 						<c:forEach items="${turma.matriculas}" var="matricula" varStatus="loopStatus">
 							<tr>
-								<td><c:out value="${matricula.cliente.matricula}" /></td>
+								<td><c:out value="${matricula.cliente.id}" /></td>
 								<td><c:out value="${matricula.cliente.nome}" /></td>
 								<td><c:out value="${matricula.cliente.telefone}" /></td>
 								<td><c:out value="${matricula.cliente.email}" /></td>

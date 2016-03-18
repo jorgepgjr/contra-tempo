@@ -116,8 +116,14 @@ public class LoginController {
 	public ModelAndView home(ModelAndView model) {
 		this.populaOBanco();
 		List<Turma> turmas = (List<Turma>) turmaRepository.findAll();
+		List<Cliente> clientes = clienteRepository.findByMatriculasProximasDeVencimento();
+		List<Cliente> aniversariantes = clienteRepository.findByDataNasc(Calendar.getInstance());
+		
 		model.setViewName("home");
 		model.addObject("turmas", turmas);
+		model.addObject("clientes", clientes);		
+		model.addObject("aniversariantes", aniversariantes);
+		
 		return model;
 	}
 	
@@ -172,7 +178,7 @@ public class LoginController {
 			clienteRepository.save(new Cliente("Dora Magno", "minhaSogra@gmail.com", "91132123", "https://goo.gl/IweKcl"));
 			clienteRepository.save(new Cliente("Aercio Peres Magno", "amoOJorge@gmail.com", "91132123", "https://goo.gl/IweKcl"));
 			clienteRepository.save(new Cliente("Jorge Full","312312312312","Rua Tocantins 77 apt 171","jorgepgjr@gmail.com","9932139123",
-					"Reporter","internet",Calendar.getInstance(),'M',"https://goo.gl/IweKcl",Calendar.getInstance()));
+					"Reporter","internet",Calendar.getInstance(),'M',"http://graph.facebook.com/v2.5/100000160917760/picture",Calendar.getInstance()));
 		}
 		
 		if(matriculaRepository.count() == 0){
@@ -195,6 +201,7 @@ public class LoginController {
 			matricula2.setCliente(clienteRepository.findOne(2L));
 			matricula2.setTurma(turmaRepository.findOne(1L));
 			matricula2.setPago(false);
+			matricula2.setDtFim(Calendar.getInstance());
 			
 			Matricula matricula3 = new Matricula(matricula);
 			matricula3.setCliente(clienteRepository.findOne(3L));

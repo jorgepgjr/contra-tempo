@@ -8,10 +8,12 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
 <link href="css/home.css" rel="stylesheet" />
-<script type="text/javascript"	src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap-select.min.js"></script>
+<script type="text/javascript"
+	src="bootstrap/js/bootstrap-select.min.js"></script>
 </head>
+<jsp:useBean id="now" class="java.util.Date" />
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
 		<div class="container-fluid">
@@ -90,16 +92,17 @@
 							class="form-control" placeholder="dataNasc" value="">
 					</div>
 					<div class="form-group">
-						<label for="sel1">Trumas</label>
-						<select name="turmas" class="selectpicker" id="sel1" multiple title="Escolha as turmas"> 
+						<label for="sel1">Trumas</label> <select name="turmas"
+							class="selectpicker" id="sel1" multiple title="Escolha as turmas">
 							<c:forEach items="${turmas}" var="turma" varStatus="loopStatus">
-								<option  value="${turma.id}" ><c:out value="${turma.nome}" /></option>
-							</c:forEach>							
+								<option value="${turma.id}"><c:out
+										value="${turma.nome}" /></option>
+							</c:forEach>
 						</select>
 					</div>
-<!-- 					<div class="form-group"> -->
-<%-- 						<form:select multiple="true" path="modalidades" items="${modalidades}" itemLabel="nome" itemValue="id" /> --%>
-<!-- 					</div> -->
+					<!-- 					<div class="form-group"> -->
+					<%-- 						<form:select multiple="true" path="modalidades" items="${modalidades}" itemLabel="nome" itemValue="id" /> --%>
+					<!-- 					</div> -->
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3">
@@ -110,14 +113,37 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4 well">
-						<div class="form-group">
-							<ul class="list-group">
-								<li class="list-group-item">Cras justo odio</li>
-							</ul>
-						</div>
+<!-- 				Próximos do vencimento -->
+				<div class="col-sm-6 well">
+					<label>Próximos do vencimento</label>
+					<div class="input-group" id="tabela-alunos">
+						<jsp:include page="tabela-alunos.jsp" />
 					</div>
 				</div>
+<!-- 				Aniversáriantes -->
+				<div class="col-sm-3 well">
+					<div class="input-group" id="tabela-alunos">
+						<label>Aniversariantes do Mês de <fmt:formatDate
+								pattern="MMMM" value="${now}" /></label>
+						<c:forEach items="${aniversariantes}" var="aniversariante"
+							varStatus="loopStatus">
+							<li class="list-group-item"><img
+								src="${aniversariante.fotoUrl}" class="img-rounded"
+								alt="Cinque Terre" width="50" height="50"> <c:out
+									value="${aniversariante.nome}" /> <fmt:formatDate
+									pattern="dd/MM/yyy" value="${aniversariante.dataNasc.time}" />
+							</li>
+							<br />
+						</c:forEach>
+					</div>
+				</div>
+				<div class="col-sm-6 well">
+					<label>Pagamentos em aberto</label>
+					<div class="input-group" id="tabela-alunos">
+						<jsp:include page="tabela-alunos.jsp" />
+					</div>
+				</div>
+			</div>
 		</form:form>
 	</div>
 </body>
@@ -163,7 +189,7 @@
 		});
 		return false; // stop the browser following the link
 	});
-	
+
 	$("#menu-turma").click(function() {
 		$.ajax({
 			type : "GET",

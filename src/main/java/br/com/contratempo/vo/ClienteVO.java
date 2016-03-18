@@ -6,9 +6,13 @@ import br.com.contratempo.entity.Cliente;
 import br.com.contratempo.entity.Matricula;
 
 
+/**
+ * @author jorge
+ *
+ */
 public class ClienteVO{
 	
-	private Long matricula;
+	private Long id;
 	private String nome;
 	private String email;
 	private String telefone;
@@ -17,7 +21,7 @@ public class ClienteVO{
 	
 	public ClienteVO(Cliente cliente) {
 		super();
-		this.matricula = cliente.getId();
+		this.id = cliente.getId();
 		this.nome = cliente.getNome();
 		this.email = cliente.getEmail();
 		this.telefone = cliente.getTelefone();
@@ -25,10 +29,10 @@ public class ClienteVO{
 		this.matriculas =  cliente.getMatriculas();
 	}
 	public Long getMatricula() {
-		return matricula;
+		return id;
 	}
 	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
+		this.id = matricula;
 	}
 	public String getNome() {
 		return nome;
@@ -60,4 +64,11 @@ public class ClienteVO{
 	public void setMatriculas(List<Matricula> matriculas) {
 		this.matriculas = matriculas;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 }
