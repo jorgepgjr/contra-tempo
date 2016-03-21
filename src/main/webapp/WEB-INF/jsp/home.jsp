@@ -113,13 +113,6 @@
 						</div>
 					</div>
 				</div>
-<!-- 				Próximos do vencimento -->
-				<div class="col-sm-6 well">
-					<label>Próximos do vencimento</label>
-					<div class="input-group" id="tabela-alunos">
-						<jsp:include page="tabela-alunos.jsp" />
-					</div>
-				</div>
 <!-- 				Aniversáriantes -->
 				<div class="col-sm-3 well">
 					<div class="input-group" id="tabela-alunos">
