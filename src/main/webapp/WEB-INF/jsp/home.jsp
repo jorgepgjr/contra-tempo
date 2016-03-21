@@ -41,99 +41,102 @@
 		<form:form id="register-form" action="cliente" method="POST"
 			role="form" style="display: block;" modelAttribute="cliente">
 			<div class="row">
-				<div class="col-sm-4 well">
-					<div class="well well-sm">
-						<strong><span class="glyphicon glyphicon-asterisk"></span>Campos
-							Obrigatório</strong>
-					</div>
-					<div class="form-group">
-						<label for="nome">Nome</label>
-						<div class="input-group">
-							<input type="text" name="nome" id="nome" tabindex="1"
-								class="form-control" placeholder="Nome" value="" required>
-							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-asterisk"></span>
-							</span>
+				<div class="col-sm-4">
+					<div class="well">
+						<div class="well well-sm">
+							<strong><span class="glyphicon glyphicon-asterisk"></span>Campos
+								Obrigatório</strong>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<input type="tel" name="telefone" id="telefone" tabindex="1"
-								class="form-control" placeholder="Telefone" value="" required>
-							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-asterisk"></span>
-							</span>
+						<div class="form-group">
+							<label for="nome">Nome</label>
+							<div class="input-group">
+								<input type="text" name="nome" id="nome" tabindex="1"
+									class="form-control" placeholder="Nome" value="" required>
+								<span class="input-group-addon"> <span
+									class="glyphicon glyphicon-asterisk"></span>
+								</span>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<input type="email" name="email" id="email" tabindex="1"
-							class="form-control" placeholder="E-mail" value="">
-					</div>
-					<div class="form-group">
-						<input type="text" name="rg" id="rg" tabindex="1"
-							class="form-control" placeholder="RG" value="">
-					</div>
-					<div class="form-group">
-						<input type="text" name="endereco" id="endereco" tabindex="1"
-							class="form-control" placeholder="Endereco" value="">
-					</div>
-					<div class="form-group">
-						<input type="text" name="profissao" id="profissao" tabindex="1"
-							class="form-control" placeholder="Profissão" value="">
-					</div>
-					<div class="form-group">
-						<input type="text" name="comoConheceu" id="comoConheceu"
-							tabindex="1" class="form-control"
-							placeholder="Como Nos Conheceu?" value="">
-					</div>
-					<div class="form-group">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="tel" name="telefone" id="telefone" tabindex="1"
+									class="form-control" placeholder="Telefone" value="" required>
+								<span class="input-group-addon"> <span
+									class="glyphicon glyphicon-asterisk"></span>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="email" name="email" id="email" tabindex="1"
+								class="form-control" placeholder="E-mail" value="">
+						</div>
+						<div class="form-group">
+							<input type="text" name="rg" id="rg" tabindex="1"
+								class="form-control" placeholder="RG" value="">
+						</div>
+						<div class="form-group">
+							<input type="text" name="endereco" id="endereco" tabindex="1"
+								class="form-control" placeholder="Endereco" value="">
+						</div>
+						<div class="form-group">
+							<input type="text" name="profissao" id="profissao" tabindex="1"
+								class="form-control" placeholder="Profissão" value="">
+						</div>
+						<div class="form-group">
+							<input type="text" name="comoConheceu" id="comoConheceu"
+								tabindex="1" class="form-control"
+								placeholder="Como Nos Conheceu?" value="">
+						</div>
+						<div class="form-group">
 
-						<input type="date" name="dataNasc" id="dataNasc" tabindex="1"
-							class="form-control" placeholder="dataNasc" value="">
-					</div>
-					<div class="form-group">
-						<label for="sel1">Trumas</label> <select name="turmas"
-							class="selectpicker" id="sel1" multiple title="Escolha as turmas">
-							<c:forEach items="${turmas}" var="turma" varStatus="loopStatus">
-								<option value="${turma.id}"><c:out
-										value="${turma.nome}" /></option>
-							</c:forEach>
-						</select>
-					</div>
-					<!-- 					<div class="form-group"> -->
-					<%-- 						<form:select multiple="true" path="modalidades" items="${modalidades}" itemLabel="nome" itemValue="id" /> --%>
-					<!-- 					</div> -->
-					<div class="form-group">
-						<div class="row">
-							<div class="col-sm-6 col-sm-offset-3">
-								<input type="submit" name="register-submit" id="register-submit"
-									tabindex="4" class="form-control btn btn-register"
-									value="Salvar">
+							<input type="date" name="dataNasc" id="dataNasc" tabindex="1"
+								class="form-control" placeholder="dataNasc" value="">
+						</div>
+						<div class="form-group">
+							<label for="sel1">Trumas</label> <select name="turmas"
+								class="selectpicker" id="sel1" multiple
+								title="Escolha as turmas">
+								<c:forEach items="${turmas}" var="turma" varStatus="loopStatus">
+									<option value="${turma.id}"><c:out
+											value="${turma.nome}" /></option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6 col-sm-offset-3">
+									<input type="submit" name="register-submit"
+										id="register-submit" tabindex="4"
+										class="form-control btn btn-register" value="Salvar">
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-<!-- 				Aniversáriantes -->
+				<!-- 				Aniversáriantes -->
 				<div class="col-sm-3 well">
-					<div class="input-group" id="tabela-alunos">
-						<label>Aniversariantes do Mês de <fmt:formatDate
-								pattern="MMMM" value="${now}" /></label>
-						<c:forEach items="${aniversariantes}" var="aniversariante"
-							varStatus="loopStatus">
-							<li class="list-group-item"><img
-								src="${aniversariante.fotoUrl}" class="img-rounded"
-								alt="Cinque Terre" width="50" height="50"> <c:out
-									value="${aniversariante.nome}" /> <fmt:formatDate
-									pattern="dd/MM/yyy" value="${aniversariante.dataNasc.time}" />
-							</li>
-							<br />
-						</c:forEach>
-					</div>
+						<div class="input-group" id="tabela-alunos">
+							<label>Aniversariantes do Mês de <fmt:formatDate
+									pattern="MMMM" value="${now}" /></label>
+							<ul class="list-group">
+								<c:forEach items="${aniversariantes}" var="aniversariante"
+									varStatus="loopStatus">
+									<li class="list-group-item"><img
+										src="${aniversariante.fotoUrl}" class="img-rounded"
+										alt="Cinque Terre" width="50" height="50"> <c:out
+											value="${aniversariante.nome}" /> <fmt:formatDate
+											pattern="dd/MM/yyy" value="${aniversariante.dataNasc.time}" />
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
 				</div>
-				<div class="col-sm-6 well">
-					<label>Pagamentos em aberto</label>
-					<div class="input-group" id="tabela-alunos">
-						<jsp:include page="tabela-alunos.jsp" />
+				<div class="col-sm-6">
+					<div class="well">
+						<label>Pagamentos em aberto</label>
+						<div class="input-group" id="tabela-alunos">
+							<jsp:include page="tabela-alunos.jsp" />
+						</div>
 					</div>
 				</div>
 			</div>
