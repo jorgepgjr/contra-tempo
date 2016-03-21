@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar  target/contra-tempo-1.0.0-SNAPSHOT.jar
+web: mvn spring-boot:run
