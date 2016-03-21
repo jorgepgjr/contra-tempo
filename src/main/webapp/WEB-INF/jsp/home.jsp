@@ -38,52 +38,42 @@
 		</div>
 	</nav>
 	<div class="container" id="panel-body">
-		<form:form id="register-form" action="cliente" method="POST"
-			role="form" style="display: block;" modelAttribute="cliente">
-			<div class="row">				
-				<!-- 				Aniversariantes -->
-				<div class="col-sm-4 well">
-						<div class="input-group" id="tabela-alunos">
-							<label>Aniversariantes do Mês de <fmt:formatDate
-									pattern="MMMM" value="${now}" /></label>
-							<ul class="list-group">
-								<c:forEach items="${aniversariantes}" var="aniversariante"
-									varStatus="loopStatus">
-									<li class="list-group-item"><img
-										src="${aniversariante.fotoUrl}" class="img-rounded"
-										alt="Imagem não encontrada" width="50" height="50"> <c:out
-											value="${aniversariante.nome}" /> <fmt:formatDate
-											pattern="dd/MM/yyy" value="${aniversariante.dataNasc.time}" />
-									</li>
-								</c:forEach>
-							</ul>
-						</div>
+		<div class="row">
+			<!-- 				Aniversariantes -->
+			<div class="col-sm-4 well">
+				<h4 class="text-center">
+					Aniversariantes do Mês de
+					<fmt:formatDate pattern="MMMM" value="${now}" />
+				</h4>
+				<div class="input-group" id="tabela-alunos">
+					<ul class="list-group">
+						<c:forEach items="${aniversariantes}" var="aniversariante"
+							varStatus="loopStatus">
+							<li class="list-group-item"><img
+								src="${aniversariante.fotoUrl}" class="img-rounded"
+								alt="Imagem não encontrada" width="50" height="50"> <c:out
+									value="${aniversariante.nome}" /> <fmt:formatDate
+									pattern="dd/MM/yyy" value="${aniversariante.dataNasc.time}" />
+							</li>
+						</c:forEach>
+					</ul>
 				</div>
-				<div class="col-sm-4">
-					<jsp:include page="aluno/aluno-cadastro.jsp" />
-				</div>
-<!-- 				Programação do dia -->
-				<div class="col-sm-4">
-					<div class="well">
-						<label>Aulas de Hoje</label>
-						<c:forEach items="${turmasDoDia}" var="turma"
-									varStatus="loopStatus">
-									<li class="list-group-item">
-									<c:out value="${turma.nome}" /> - <fmt:formatDate pattern="HH:mm" value="${turma.horario.time}" /> | <c:out value="${turma.professor.nome}" /> - <c:out value="${turma.sala}" />  
-									</li>
-								</c:forEach>						
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="well">
-						<label>Pagamentos em aberto</label>
-						<div class="input-group" id="tabela-alunos">
-							<jsp:include page="tabela-alunos.jsp" />
-						</div>
+			</div>
+			<div class="col-sm-8">
+				<jsp:include page="aluno/aluno-cadastro.jsp" />
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="well">
+					<h4 class="text-center">Pagamentos em aberto</h4>
+					<div class="input-group" id="tabela-alunos">
+						<jsp:include page="tabela-alunos.jsp" />
 					</div>
 				</div>
 			</div>
-		</form:form>
+		</div>
 	</div>
 </body>
 <script type="text/javascript">
