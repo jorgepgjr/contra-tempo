@@ -129,5 +129,14 @@ public class Turma {
 	public void setMatriculas(List<Matricula> matriculas) {
 		this.matriculas = matriculas;
 	}
+	
+	/**
+	 * Methodo que retorma um calendar apontando para o padrao de horario
+	 * TODO: Remover daqui
+	 * @return
+	 */
+	public static Calendar getDefaultHorario(int dayOfWeek){
+		return new GregorianCalendar(2016, Calendar.MAY, dayOfWeek);
+	}
 
 }

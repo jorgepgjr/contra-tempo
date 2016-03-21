@@ -119,11 +119,15 @@ public class LoginController {
 		List<Cliente> clientes = clienteRepository.findByMatriculasProximasDeVencimento();
 		List<Cliente> aniversariantes = clienteRepository.findByDataNasc(Calendar.getInstance());
 		
+		Calendar cal = Turma.getDefaultHorario(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+		
+		List<Turma> turmasDoDia = turmaRepository.findTurmasDoDia(cal);
 		model.setViewName("home");
 		model.addObject("turmas", turmas);
 		model.addObject("clientes", clientes);		
 		model.addObject("aniversariantes", aniversariantes);
-		
+		model.addObject("turmasDoDia", turmasDoDia);
+
 		return model;
 	}
 	
@@ -165,7 +169,7 @@ public class LoginController {
 			turma2.setProfessor(professorRepository.findOne(2L));
 			turma2.setModalidades(modalidadesTurma);
 			turma2.setNome("Dança de Salão 1");
-			turma2.setHorario(new GregorianCalendar(2016, Calendar.MAY, 7,21,30));
+			turma2.setHorario(new GregorianCalendar(2016, Calendar.MAY, 2,21,30));
 			turma2.setNivel("1");
 			turma2.setSala(Turma.SALA2);
 
