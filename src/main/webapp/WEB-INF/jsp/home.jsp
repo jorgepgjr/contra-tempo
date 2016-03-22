@@ -39,12 +39,16 @@
 	</nav>
 	<div class="container" id="panel-body">
 		<div class="row">
+
+			<div class="col-sm-8">
+				<jsp:include page="aluno/aluno-cadastro.jsp" />
+			</div>
 			<!-- 				Aniversariantes -->
 			<div class="col-sm-4 well">
-				<h4 class="text-center">
+				<h3 class="text-center">
 					Aniversariantes do Mês de
 					<fmt:formatDate pattern="MMMM" value="${now}" />
-				</h4>
+				</h3>
 				<div class="input-group" id="tabela-alunos">
 					<ul class="list-group">
 						<c:forEach items="${aniversariantes}" var="aniversariante"
@@ -59,15 +63,12 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-sm-8">
-				<jsp:include page="aluno/aluno-cadastro.jsp" />
-			</div>
-
 		</div>
+
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="well">
-					<h4 class="text-center">Pagamentos em aberto</h4>
+					<h3 class="text-center">Pagamentos em Aberto</h3>
 					<div class="input-group" id="tabela-alunos">
 						<jsp:include page="tabela-alunos.jsp" />
 					</div>
@@ -77,17 +78,6 @@
 	</div>
 </body>
 <script type="text/javascript">
-	$("#register-form").submit(function(event) {
-		event.preventDefault();
-		var formData = $("#register-form").serialize();
-		$.ajax({
-			type : "POST",
-			url : "cliente",
-			data : formData
-		}).done(function(response) {
-			carregaTela(response);
-		});
-	});
 	function carregaTela(tela, id) {
 		$("#panel-body").empty();
 		$("#panel-body").html(tela);

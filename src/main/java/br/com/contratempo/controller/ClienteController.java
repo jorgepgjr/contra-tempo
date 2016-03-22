@@ -44,8 +44,8 @@ public class ClienteController {
 	ArrayList<Cliente> clientes;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView cadastraCliente(@ModelAttribute Cliente cliente, @RequestParam(value="turmas") List<Turma> turmas, Model model) {
-		repository.save(cliente);
+	public ModelAndView cadastraCliente(@ModelAttribute Cliente cliente, @RequestParam(value="turmas", required=false) List<Turma> turmas, Model model) {
+		this.salvaCliente(cliente);
 		return new ModelAndView("redirect:/cliente");
 	}
 	
@@ -53,7 +53,7 @@ public class ClienteController {
 	@RequestMapping(value="/{id}",  method = RequestMethod.POST)
 	public void updateCliente(@PathVariable("id") Long id,@ModelAttribute Cliente cliente) {
 		cliente.setId(id);
-		repository.save(cliente);
+		this.salvaCliente(cliente);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -95,6 +95,13 @@ public class ClienteController {
 		model.setViewName("aluno/aluno-detalhe");
 		model.addObject("clienteDetalhe", cliente);
 		return model;
+	}
+	
+	private void salvaCliente(Cliente cliente){
+		//Verificar se não está vazia
+		cliente.setTelefone(cliente.getTelefone().replaceAll("\\D+","")); //Removendo mask
+		cliente.setRg(cliente.getRg().replaceAll("[^A-Za-z0-9 ]","")); //Removendo mask
+		repository.save(cliente);
 	}
 
 	private boolean isNumber(String string) {

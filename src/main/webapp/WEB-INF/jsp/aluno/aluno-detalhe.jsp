@@ -33,7 +33,7 @@
 	<div class="form-group col-sm-3">
 		<label for="telefone">Telefone</label> <input type="tel"
 			name="telefone" id="telefone" tabindex="1" class="form-control"
-			placeholder="Telefone" value="${clienteDetalhe.telefone}" required>
+			placeholder="Telefone" title="(99) 12345-1234" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" value="${clienteDetalhe.telefone}" required>
 	</div>
 	<div class="form-group col-sm-3">
 		<label for="email">E-mail</label> <input type="email" name="email"

@@ -6,7 +6,6 @@
 <link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
 <link href="css/home.css" rel="stylesheet" />
 
-
 <div class="row well">
 		<div class="col-sm-4" >
 			Nome:
