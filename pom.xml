@@ -5,7 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.5.RELEASE</version>
+		<version>1.3.3.RELEASE</version>
+<!-- 		<version>1.2.5.RELEASE</version> -->
 	</parent>
 	<artifactId>contra-tempo</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
@@ -18,6 +19,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -48,11 +54,11 @@
 			<artifactId>bootstrap-maven</artifactId>
 			<version>2.0.4</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>javax.servlet</groupId> -->
-<!-- 			<artifactId>jsp-api</artifactId> -->
-<!-- 			<version>2.0</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>javax.servlet</groupId> -->
+		<!-- <artifactId>jsp-api</artifactId> -->
+		<!-- <version>2.0</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>com.efsavage.jquery</groupId>
 			<artifactId>jquery-maven</artifactId>
@@ -76,7 +82,7 @@
 		<!-- </dependency> -->
 	</dependencies>
 	<build>
-	<finalName>contra-tempo</finalName>
+		<finalName>contra-tempo</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

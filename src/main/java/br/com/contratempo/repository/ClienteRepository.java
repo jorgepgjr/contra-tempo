@@ -13,7 +13,7 @@ public interface ClienteRepository extends CrudRepository<Cliente, Long>{
 	List<Cliente> findByNomeContainingIgnoreCase(String nome);
 	
 	
-	@Query("select c from Cliente c right join c.matriculas m  where m.pago = ?1")
+	@Query("select distinct c from Cliente c inner join c.matriculas m  where m.pago = ?1 order by c.nome")
 	List<Cliente> findByMatriculasPaga(boolean isPago);
 	
 	@Query("select c from Cliente c left join c.matriculas m  where m.dtFim < CURRENT_DATE")

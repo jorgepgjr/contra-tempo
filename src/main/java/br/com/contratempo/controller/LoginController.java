@@ -30,12 +30,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Cliente;
+import br.com.contratempo.entity.Constants;
 import br.com.contratempo.entity.Matricula;
 import br.com.contratempo.entity.Modalidade;
 import br.com.contratempo.entity.Professor;
 import br.com.contratempo.entity.Registro;
 import br.com.contratempo.entity.Turma;
 import br.com.contratempo.repository.ClienteRepository;
+import br.com.contratempo.repository.ConstantsRepository;
 import br.com.contratempo.repository.MatriculaRepository;
 import br.com.contratempo.repository.ModalidadeRepository;
 import br.com.contratempo.repository.ProfessorRepository;
@@ -48,6 +50,9 @@ public class LoginController {
 	
 	@Autowired
     RegistroRepository repository;
+	
+	@Autowired
+    ConstantsRepository constantsRepository;
 	
 	@Autowired
     ModalidadeRepository modalidadeRepository;
@@ -144,6 +149,10 @@ public class LoginController {
 			modalidadeRepository.save(new Modalidade("Bolero"));
 			modalidadeRepository.save(new Modalidade("Zouk"));
 			modalidades = (ArrayList<Modalidade>) modalidadeRepository.findAll();
+			Constants constants = new Constants();
+			constants.setNome(Constants.VALOR_TURMA_PADRAO);
+			constants.setValor("75");
+			constantsRepository.save(constants);
 		}
 		if (professorRepository.count() == 0) {
 			professorRepository.save(new Professor("Cristhopher"));

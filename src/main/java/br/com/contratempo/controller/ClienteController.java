@@ -17,6 +17,7 @@
 package br.com.contratempo.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Cliente;
+import br.com.contratempo.entity.Constants;
+import br.com.contratempo.entity.Matricula;
 import br.com.contratempo.entity.Turma;
 import br.com.contratempo.repository.ClienteRepository;
+import br.com.contratempo.repository.ConstantsRepository;
+import br.com.contratempo.repository.MatriculaRepository;
 import br.com.contratempo.vo.ClienteVO;
 
 @Controller
@@ -41,11 +46,34 @@ public class ClienteController {
 	@Autowired
     ClienteRepository repository;
 	
+	@Autowired
+	MatriculaRepository matriculaRepository;
+	
+	@Autowired
+	ConstantsRepository constantsRepository;
+	
 	ArrayList<Cliente> clientes;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView cadastraCliente(@ModelAttribute Cliente cliente, @RequestParam(value="turmas", required=false) List<Turma> turmas, Model model) {
-		this.salvaCliente(cliente);
+	public ModelAndView cadastraCliente(@ModelAttribute Cliente cliente, @RequestParam(value="turmas", required=false) List<Turma> turmas, Model model) {		
+		cliente = this.salvaCliente(cliente);		
+		for (Turma turma : turmas) {
+			Constants constants = constantsRepository.findByNomeContainingIgnoreCase(Constants.VALOR_TURMA_PADRAO);
+			Calendar inicio = Calendar.getInstance();
+			inicio.set(Calendar.DAY_OF_MONTH, 10);
+			
+			Calendar fim = Calendar.getInstance();
+			inicio.set(Calendar.DAY_OF_MONTH, 10);
+			inicio.add(Calendar.MONTH, 1);
+
+			Matricula matricula = new Matricula();
+			matricula.setCliente(cliente);
+			matricula.setValor(Double.valueOf(constants.getValor()));
+			matricula.setDtInicio(inicio);
+			matricula.setDtFim(fim);
+			matricula.setTurma(turma);
+			matriculaRepository.save(matricula);
+		}		
 		return new ModelAndView("redirect:/cliente");
 	}
 	
@@ -97,11 +125,11 @@ public class ClienteController {
 		return model;
 	}
 	
-	private void salvaCliente(Cliente cliente){
+	private Cliente salvaCliente(Cliente cliente){
 		//Verificar se não está vazia
 		cliente.setTelefone(cliente.getTelefone().replaceAll("\\D+","")); //Removendo mask
 		cliente.setRg(cliente.getRg().replaceAll("[^A-Za-z0-9 ]","")); //Removendo mask
-		repository.save(cliente);
+		return repository.save(cliente);
 	}
 
 	private boolean isNumber(String string) {
