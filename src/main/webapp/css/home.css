@@ -1,8 +1,9 @@
 body {
-    background: black;
-    padding-top: 70px; 
-    /*Usado pois a Nav bar esta fixa*/
+	background: black;
+	padding-top: 70px;
+	/*Usado pois a Nav bar esta fixa*/
 }
+
 .btn-register {
 	background-color: #1CB94E;
 	outline: none;
@@ -14,10 +15,32 @@ body {
 	text-transform: uppercase;
 	border-color: #1CB94A;
 }
-.btn-register:hover,
-.btn-register:focus {
+
+.btn-register:hover, .btn-register:focus {
 	color: #fff;
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
-tr.clickable-row { cursor: pointer;}
+
+tr.clickable-row {
+	cursor: pointer;
+}
+
+.btn-pagar {
+	background-color: #1CB94E;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 1px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+
+hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 0;
+	border-top: 1px solid #333;
+}

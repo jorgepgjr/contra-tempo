@@ -116,17 +116,16 @@ public class LoginController {
 	public ModelAndView home(ModelAndView model) {
 		this.populaOBanco();
 		List<Turma> turmas = (List<Turma>) turmaRepository.findAll();
-		List<Cliente> clientes = clienteRepository.findByMatriculasProximasDeVencimento();
+		List<Cliente> clientes = clienteRepository.findByMatriculasPaga(false);
 		List<Cliente> aniversariantes = clienteRepository.findByDataNasc(Calendar.getInstance());
 		
-		Calendar cal = Turma.getDefaultHorario(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+//		Calendar cal = Turma.getDefaultHorario(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+//		List<Turma> turmasDoDia = turmaRepository.findTurmasDoDia(cal);
 		
-		List<Turma> turmasDoDia = turmaRepository.findTurmasDoDia(cal);
 		model.setViewName("home");
 		model.addObject("turmas", turmas);
 		model.addObject("clientes", clientes);		
 		model.addObject("aniversariantes", aniversariantes);
-		model.addObject("turmasDoDia", turmasDoDia);
 
 		return model;
 	}
@@ -190,10 +189,10 @@ public class LoginController {
 		
 		if(matriculaRepository.count() == 0){
 			Calendar vencimento = Calendar.getInstance();
-			vencimento.add(Calendar.MONTH, 1);
+			vencimento.add(Calendar.DAY_OF_MONTH, -1);
 			
 			Calendar today = Calendar.getInstance();
-			today.set(Calendar.HOUR_OF_DAY, 0);
+			today.add(Calendar.MONTH, -2);
 			
 			Matricula matricula = new Matricula();
 			matricula.setAtiva(true);
@@ -212,18 +211,31 @@ public class LoginController {
 			
 			Matricula matricula3 = new Matricula(matricula);
 			matricula3.setCliente(clienteRepository.findOne(3L));
-			matricula3.setTurma(turmaRepository.findOne(2L));
+			matricula3.setTurma(turmaRepository.findOne(1L));
 			matricula3.setPago(true);
 			
 			Matricula matricula4 = new Matricula(matricula);
-			matricula4.setCliente(clienteRepository.findOne(4L));
+			matricula4.setCliente(clienteRepository.findOne(3L));
 			matricula4.setTurma(turmaRepository.findOne(2L));
 			matricula4.setPago(false);
+			matricula4.setDtFim(Calendar.getInstance());
+			
+			Matricula matricula5 = new Matricula(matricula);
+			matricula5.setCliente(clienteRepository.findOne(4L));
+			matricula5.setTurma(turmaRepository.findOne(1L));
+			matricula5.setPago(false);
+			
+			Matricula matricula6 = new Matricula(matricula);
+			matricula6.setCliente(clienteRepository.findOne(3L));
+			matricula6.setTurma(turmaRepository.findOne(2L));
+			matricula6.setPago(true);
 			
 			matriculaRepository.save(matricula);
 			matriculaRepository.save(matricula2);
 			matriculaRepository.save(matricula3);
 			matriculaRepository.save(matricula4);
+			matriculaRepository.save(matricula5);
+			matriculaRepository.save(matricula6);
 		}
 		
 		

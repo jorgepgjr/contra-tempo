@@ -77,7 +77,7 @@
 				value="">
 		</div>
 		<div class="form-group">
-			<label for="sel1">Trumas</label> <select name="turmas"
+			<label for="sel1">Turmas</label> <select name="turmas"
 				class="selectpicker" id="sel1" multiple title="Escolha as turmas">
 				<c:forEach items="${turmas}" var="turma" varStatus="loopStatus">
 					<option value="${turma.id}"><c:out value="${turma.nome}" /></option>

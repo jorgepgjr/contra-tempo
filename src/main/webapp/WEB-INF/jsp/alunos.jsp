@@ -8,6 +8,11 @@
 <link href="css/home.css" rel="stylesheet" />
 
 <div class="row well">
+	<div id="detalhe-aluno">
+	</div>
+</div>
+
+<div class="row well">
 	<div class="col-sm-12">
 		<div class="form-group">
 			<form class="navbar-form" role="search" id="search-form">
@@ -23,15 +28,11 @@
 		</div>
 		<div class="col-sm-12">
 			<div class="input-group" id="tabela-alunos">
-			<jsp:include page="tabela-alunos.jsp" />
+			<jsp:include page="aluno/aluno-tabela.jsp" />
 			</div>
 		</div>
 	</div>
 </div>
-
-<div class="row well">
-	<div id="detalhe-aluno">
-	</div>
-</div>
 <script type="text/javascript"
 	src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="js/aluno/alunos.js"></script>

@@ -83,7 +83,7 @@ public class ClienteController {
 			}
 		}
 
-		model.setViewName("tabela-alunos");
+		model.setViewName("aluno/aluno-tabela");
 		model.addObject("clientes", clientesVO);
 		return model;
 	}

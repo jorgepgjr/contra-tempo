@@ -32,14 +32,17 @@
 					<li id="menu-professor"><a href="#">Professor</a></li>
 					<li id="menu-evento"><a href="#">Evento</a></li>
 					<li id="menu-relatorio"><a href="#">Relatório</a></li>
-					<li id="menu-about"><a href="about">About</a></li>
+					<li id="menu-about"><a href="#">About</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="container" id="panel-body">
 		<div class="row">
-
+<!-- 			<div class="alert alert-success"> -->
+<!-- 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+<!-- 				<strong>Success!</strong> Indicates a successful or positive action. -->
+<!-- 			</div> -->
 			<div class="col-sm-8">
 				<jsp:include page="aluno/aluno-cadastro.jsp" />
 			</div>
@@ -70,54 +73,12 @@
 				<div class="well">
 					<h3 class="text-center">Pagamentos em Aberto</h3>
 					<div class="input-group" id="tabela-alunos">
-						<jsp:include page="tabela-alunos.jsp" />
+						<jsp:include page="home/home-matriculas.jsp" />
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-	function carregaTela(tela, id) {
-		$("#panel-body").empty();
-		$("#panel-body").html(tela);
-		if (id != null) {
-			$(".active").removeClass("active");
-			$('#' + id).addClass("active");
-		}
-	}
-
-	$("#menu-turma").click(function() {
-		$.ajax({
-			type : "GET",
-			url : "turma",
-			success : function(data) {
-				carregaTela(data, 'menu-turma');
-			}
-		});
-		return false; // stop the browser following the link
-	});
-
-	$("#menu-aluno").click(function() {
-		$.ajax({
-			type : "GET",
-			url : "cliente",
-			success : function(data) {
-				carregaTela(data, 'menu-aluno');
-			}
-		});
-		return false; // stop the browser following the link
-	});
-
-	$("#menu-turma").click(function() {
-		$.ajax({
-			type : "GET",
-			url : "turma",
-			success : function(data) {
-				carregaTela(data, 'menu-turma');
-			}
-		});
-		return false; // stop the browser following the link
-	});
-</script>
+<script type="text/javascript" src="js/home.js"></script>
 </html>
