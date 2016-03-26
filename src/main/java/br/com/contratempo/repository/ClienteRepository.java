@@ -19,7 +19,7 @@ public interface ClienteRepository extends CrudRepository<Cliente, Long>{
 	@Query("select c from Cliente c left join c.matriculas m  where m.dtFim < CURRENT_DATE")
 	List<Cliente> findByMatriculasVencidas();
 	
-	@Query("select c from Cliente c where month(?1) = month(c.dataNasc)")
+	@Query("select c from Cliente c where week(?1) = week(c.dataNasc) order by c.dataNasc")
 	List<Cliente> findByDataNasc(Calendar calendar);
 
 }

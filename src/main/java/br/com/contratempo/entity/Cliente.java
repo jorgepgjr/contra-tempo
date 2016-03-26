@@ -17,11 +17,13 @@ public class Cliente{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private Long idLegado;
 	private String nome;
 	private String rg;
 	private String endereco;
 	private String email;
 	private String telefone;
+	private String telefone2;
 	private String profissao;
 	private String comoConheceu;
 	
@@ -30,6 +32,11 @@ public class Cliente{
 	private char sexo;
 	private String fotoUrl;
 	private Calendar dtCadastro;
+	
+	private String cidade;
+	private String bairro;
+	private String estado;
+	private String cep;
 
 	@OneToMany(mappedBy= "cliente")
 	private List<Matricula> matriculas;
@@ -152,4 +159,47 @@ public class Cliente{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public String getTelefone2() {
+		return telefone2;
+	}
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
+	}
+	public String getBairro() {
+		return bairro;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+
+
+	public Long getIdLegado() {
+		return idLegado;
+	}
+
+
+
+	public void setIdLegado(Long idLegado) {
+		this.idLegado = idLegado;
+	}
+	
 }

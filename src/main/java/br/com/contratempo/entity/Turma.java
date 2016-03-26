@@ -39,6 +39,7 @@ public class Turma {
 	private Calendar horario;
 	private boolean ativa;	
 	private String nivel;
+	private Double valorPadrao;
 	
 	@OneToMany(mappedBy= "turma")
 	private List<Matricula> matriculas;
@@ -130,6 +131,14 @@ public class Turma {
 		this.matriculas = matriculas;
 	}
 	
+	public Double getValorPadrao() {
+		return valorPadrao;
+	}
+
+	public void setValorPadrao(Double valorPadrao) {
+		this.valorPadrao = valorPadrao;
+	}
+
 	/**
 	 * Methodo que retorma um calendar apontando para o padrao de horario
 	 * TODO: Remover daqui

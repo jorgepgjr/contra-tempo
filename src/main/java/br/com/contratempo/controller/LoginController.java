@@ -119,7 +119,7 @@ public class LoginController {
 	
 	@RequestMapping("/home")
 	public ModelAndView home(ModelAndView model) {
-		this.populaOBanco();
+//		this.populaOBanco();
 		List<Turma> turmas = (List<Turma>) turmaRepository.findAll();
 		List<Cliente> clientes = clienteRepository.findByMatriculasPaga(false);
 		List<Cliente> aniversariantes = clienteRepository.findByDataNasc(Calendar.getInstance());
@@ -173,6 +173,7 @@ public class LoginController {
 			turma1.setHorario(date);
 			turma1.setNivel("0");
 			turma1.setSala(Turma.SALA2);
+			turma1.setValorPadrao(75D);
 			
 			turma2.setProfessor(professorRepository.findOne(2L));
 			turma2.setModalidades(modalidadesTurma);
@@ -180,6 +181,7 @@ public class LoginController {
 			turma2.setHorario(new GregorianCalendar(2016, Calendar.MAY, 2,21,30));
 			turma2.setNivel("1");
 			turma2.setSala(Turma.SALA2);
+			turma1.setValorPadrao(70D);
 
 			turmaRepository.save(turma1);
 			turmaRepository.save(turma2);

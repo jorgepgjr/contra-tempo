@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.contratempo.entity.Cliente;
-import br.com.contratempo.entity.Constants;
 import br.com.contratempo.entity.Matricula;
 import br.com.contratempo.entity.Turma;
 import br.com.contratempo.repository.ClienteRepository;
@@ -58,7 +57,6 @@ public class ClienteController {
 	public ModelAndView cadastraCliente(@ModelAttribute Cliente cliente, @RequestParam(value="turmas", required=false) List<Turma> turmas, Model model) {		
 		cliente = this.salvaCliente(cliente);		
 		for (Turma turma : turmas) {
-			Constants constants = constantsRepository.findByNomeContainingIgnoreCase(Constants.VALOR_TURMA_PADRAO);
 			Calendar inicio = Calendar.getInstance();
 			inicio.set(Calendar.DAY_OF_MONTH, 10);
 			
@@ -68,7 +66,7 @@ public class ClienteController {
 
 			Matricula matricula = new Matricula();
 			matricula.setCliente(cliente);
-			matricula.setValor(Double.valueOf(constants.getValor()));
+			matricula.setValor(turma.getValorPadrao());
 			matricula.setDtInicio(inicio);
 			matricula.setDtFim(fim);
 			matricula.setTurma(turma);
