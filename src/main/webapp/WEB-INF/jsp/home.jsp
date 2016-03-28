@@ -29,7 +29,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active" id="menu-aluno"><a href="aluno">Aluno</a></li>
 					<li id="menu-turma"><a href="turma">Turma</a></li>
-					<li id="menu-professor"><a href="#">Professor</a></li>
+					<li id="menu-professor"><a href="professor">Professor</a></li>
 					<li id="menu-evento"><a href="#">Evento</a></li>
 					<li id="menu-relatorio"><a href="#">Relatório</a></li>
 					<li id="menu-about"><a href="#">About</a></li>
@@ -49,8 +49,9 @@
 			<!-- 				Aniversariantes -->
 			<div class="col-sm-4 well">
 				<h3 class="text-center">
-					Aniversariantes do Mês de
-					<fmt:formatDate pattern="MMMM" value="${now}" />
+				Aniversariantes da Semana
+<!-- 					Aniversariantes do Mês de -->
+<%-- 					<fmt:formatDate pattern="MMMM" value="${now}" /> --%>
 				</h3>
 				<div class="input-group" id="tabela-alunos">
 					<ul class="list-group">

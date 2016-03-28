@@ -32,6 +32,17 @@ $(document).ready(function() {
 		return false; // stop the browser following the link
 	});
 	
+	$("#menu-professor").click(function() {
+		$.ajax({
+			type : "GET",
+			url : "professor",
+			success : function(data) {
+				carregaTela(data, 'menu-professor');
+			}
+		});
+		return false; // stop the browser following the link
+	});
+	
 	function carregaTabela(value) {
 		$('#table-aluno').bootstrapTable({
 			data : value

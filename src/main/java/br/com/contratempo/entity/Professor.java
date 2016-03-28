@@ -1,5 +1,6 @@
 package br.com.contratempo.entity;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Professor{
@@ -18,6 +21,7 @@ public class Professor{
 	private String nome;
 	private String telefone;
 	private String telefone2;
+	private String email;
 	@OneToMany(mappedBy="professor")
 	private List<Turma> turmas;
 	private boolean ativo;
@@ -28,6 +32,8 @@ public class Professor{
 	private String agencia;
 	private String contaCorrente;
 	private String banco;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Calendar dataNasc;
 	
 	
 	public Professor(String nome) {
@@ -121,4 +127,18 @@ public class Professor{
 	public void setBanco(String banco) {
 		this.banco = banco;
 	}
+	public Calendar getDataNasc() {
+		return dataNasc;
+	}
+	public void setDataNasc(Calendar dataNasc) {
+		this.dataNasc = dataNasc;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 }
