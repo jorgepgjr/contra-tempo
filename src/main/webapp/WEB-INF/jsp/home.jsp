@@ -37,7 +37,11 @@
 			</div>
 		</div>
 	</nav>
+	<div class="container" id="loading-image" hidden="true">
+		<img alt="" src="img/cat_loading.gif" class="img-responsive center-img">
+	</div>
 	<div class="container" id="panel-body">
+	
 		<div class="row">
 <!-- 			<div class="alert alert-success"> -->
 <!-- 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->

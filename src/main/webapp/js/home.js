@@ -8,20 +8,24 @@ $(document).ready(function() {
 			$(".active").removeClass("active");
 			$('#' + id).addClass("active");
 		}
+		hideLoading();
 	}
 
 	$("#menu-aluno").click(function() {
+		showLoading();
 		$.ajax({
 			type : "GET",
 			url : "cliente",
-			success : function(data) {
+			success : function(data) {				
 				carregaTela(data, 'menu-aluno');
+				
 			}
 		});
 		return false; // stop the browser following the link
 	});
 
 	$("#menu-turma").click(function() {
+		showLoading();
 		$.ajax({
 			type : "GET",
 			url : "turma",
@@ -33,6 +37,7 @@ $(document).ready(function() {
 	});
 	
 	$("#menu-professor").click(function() {
+		showLoading();
 		$.ajax({
 			type : "GET",
 			url : "professor",
@@ -58,6 +63,15 @@ $(document).ready(function() {
 			alert("Matricula paga!");
 			window.location.replace("/home");
 		});
-	});
+	});	
+	
+	function showLoading(){
+		$('#loading-image').show();
+		$('#panel-body').hide();		
+	}
+	function hideLoading(){
+		$('#loading-image').hide();
+		$('#panel-body').show();
+	}
 	
 });

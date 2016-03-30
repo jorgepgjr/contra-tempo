@@ -99,7 +99,10 @@ public class ClienteController {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		final List<ClienteVO> clientesVO = new ArrayList<ClienteVO>();
 		if (isNumber(search)) {
-			clientes.add(repository.findOne(Long.valueOf(search)));			
+			Cliente cliente = repository.findOne(Long.valueOf(search));
+			if (cliente != null) {
+				clientes.add(repository.findOne(Long.valueOf(search)));				
+			}
 		}else {
 			clientes = repository.findByNomeContainingIgnoreCase(search);
 		}

@@ -15,8 +15,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @SpringBootApplication
 @ComponentScan
 @Configuration
-//@EnableTransactionManagement
-//@EnableJpaRepositories(basePackages="br.com.contratempo.repository", entityManagerFactoryRef="emf")
 public class ContraTempoApplication extends SpringBootServletInitializer{
 
 	@Override
@@ -35,7 +33,7 @@ public class ContraTempoApplication extends SpringBootServletInitializer{
         resolver.setSuffix(".jsp");
         return resolver;
     }
-//
+
 //	@Bean
 //	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource){
 //		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();

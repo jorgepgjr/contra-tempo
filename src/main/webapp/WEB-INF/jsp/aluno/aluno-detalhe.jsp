@@ -6,24 +6,48 @@
 <link href="css/home.css" rel="stylesheet" />
 <form:form id="aluno-detalhe-form" methodParam="PUT">
 	<div class="row">
-		<div class="form-group col-sm-4">
+		<div class="form-group col-sm-2">
 			<label for="foto">Matricula: ${clienteDetalhe.id} </label>
 			<div>
 				<img id="foto" src="${clienteDetalhe.fotoUrl}" class="img-rounded"
-					alt="Sem Foto" width="150" height="150">
+					alt="Sem Foto" width="150" height="150" name="fotoUrl">
 			</div>
 		</div>
-		<div class="form-group col-sm-6 pre-scrollable">
-			<input type="hidden" value="${clienteDetalhe.id}" id="matricula" />
-			<input type="hidden" value="${clienteDetalhe.fotoUrl}" name="fotoUrl" />
-			<c:forEach items="${clienteDetalhe.matriculas}" var="matricula"
-				varStatus="loopStatus">
-				<c:out value="${matricula.turma.nome}" /> |	Inc: <fmt:formatDate
-					pattern="dd/MM/yyy" value="${matricula.dtInicio.time}" /> Fim: <fmt:formatDate
-					pattern="dd/MM/yyy" value="${matricula.dtFim.time}" />									
-									| <fmt:formatNumber value="${matricula.valor}" type="currency" />
-				<br />
-			</c:forEach>
+		<div class="form-group col-sm-10 pre-scrollable">
+			<table class="table table-striped" id="table-aluno">
+				<thead>
+					<tr>
+						<th data-field="nome">Nome</th>
+						<th data-field="inicio">Inicio</th>
+						<th data-field="fim">Fim</th>
+						<th data-field="fim">Valor</th>
+						<th data-field="acao">Ação</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${clienteDetalhe.matriculas}" var="matricula"
+						varStatus="loopStatus">
+						<form:form>
+							<tr data-href='${matricula.id}' />
+							<input type="hidden" value="${matricula.id}" id="matricula" />
+							<td><c:out value="${matricula.turma.nome}" /></td>
+							<td><input type="date" name="inicio" id="inicio"
+								tabindex="1" class="form-control" placeholder="dataNasc"
+								value="<fmt:formatDate pattern='yyyy-MM-dd' value='${matricula.dtInicio.time}' />" />
+							</td>
+							<td><input type="date" name="dtFim" id="dtFim"
+								tabindex="1" class="form-control" placeholder="fim"
+								value="<fmt:formatDate pattern='yyyy-MM-dd' value='${matricula.dtFim.time}' />" />
+							</td>	
+							<td>
+								<input type="number" value="${matricula.valor}">
+<%-- 								<fmt:formatNumber value="${matricula.valor}" type="currency" /> --%>
+							</td>
+							<td><input type="submit" value="Atualizar" /></td>
+						</form:form>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<div class="form-group col-sm-3">

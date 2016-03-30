@@ -11,8 +11,7 @@ import br.com.contratempo.entity.Cliente;
 public interface ClienteRepository extends CrudRepository<Cliente, Long>{
 	
 	List<Cliente> findByNomeContainingIgnoreCase(String nome);
-	
-	
+
 	@Query("select distinct c from Cliente c inner join c.matriculas m  where m.pago = ?1 order by c.nome")
 	List<Cliente> findByMatriculasPaga(boolean isPago);
 	
