@@ -84,7 +84,7 @@ public class ClienteController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView consultaCliente(@ModelAttribute Cliente cliente, ModelAndView model) {
-		clientes = (ArrayList<Cliente>) repository.findAll();
+		clientes = (ArrayList<Cliente>) repository.findTop10ByOrderByIdDesc();
 		List<ClienteVO> clientesVO = new ArrayList<ClienteVO>();
 		for (Cliente cliente2 : clientes) {
 			clientesVO.add(new ClienteVO(cliente2));

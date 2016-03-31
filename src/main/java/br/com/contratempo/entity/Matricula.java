@@ -1,12 +1,14 @@
 package br.com.contratempo.entity;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Tabela principal do sistema. Representa o ingreco de um aluno em um curso.
@@ -23,7 +25,10 @@ public class Matricula{
 	@ManyToOne
 	private Cliente cliente;
 	@ManyToOne
-	private Turma turma;	
+	private Turma turma;
+	
+	@OneToMany(mappedBy="matricula")
+	private List<Movimento> movimentos;
 	
 	/**
 	 * Vigencia dessa matricula
