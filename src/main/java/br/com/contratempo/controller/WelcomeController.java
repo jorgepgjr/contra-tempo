@@ -38,7 +38,7 @@ public class WelcomeController {
 	
 	@RequestMapping("/")
 	public String index(Map<String, Object> model) {
-		return "login";
+		return "forrozea";
 	}
 
 	@RequestMapping("/foo")
