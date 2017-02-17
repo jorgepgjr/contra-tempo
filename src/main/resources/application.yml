@@ -1,0 +1,8 @@
+
+security:
+  user:
+    password: 123
+    name: user
+server:
+  port: 8080
+  context-path: /
