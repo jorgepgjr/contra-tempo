@@ -15,8 +15,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.contratempo.vo.TurmaVO;
+import lombok.Data;
 
 @Entity
+@Data
 public class Turma {
 	
 	public static String SALA1 = "Sala 1";
@@ -57,86 +59,6 @@ public class Turma {
 		this.nivel = turmaVO.getNivel();
 		this.ativa = true;
 		this.horario = new GregorianCalendar(2016, Calendar.MAY, turmaVO.getDia(),turmaVO.getHora(),turmaVO.getMinuto());
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<Modalidade> getModalidades() {
-		return modalidades;
-	}
-
-	public void setModalidades(List<Modalidade> modalidade) {
-		this.modalidades = modalidade;
-	}
-
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Calendar getHorario() {
-		return horario;
-	}
-
-	public void setHorario(Calendar horario) {
-		this.horario = horario;
-	}
-
-	public boolean isAtiva() {
-		return ativa;
-	}
-
-	public void setAtiva(boolean ativa) {
-		this.ativa = ativa;
-	}
-
-	public String getNivel() {
-		return nivel;
-	}
-
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
-	}
-
-	public String getSala() {
-		return sala;
-	}
-
-	public void setSala(String sala) {
-		this.sala = sala;
-	}
-
-	public List<Matricula> getMatriculas() {
-		return matriculas;
-	}
-
-	public void setMatriculas(List<Matricula> matriculas) {
-		this.matriculas = matriculas;
-	}
-	
-	public Double getValorPadrao() {
-		return valorPadrao;
-	}
-
-	public void setValorPadrao(Double valorPadrao) {
-		this.valorPadrao = valorPadrao;
 	}
 
 	/**
