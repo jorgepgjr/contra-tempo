@@ -5,4 +5,4 @@ security:
     name: user
 server:
   port: 8080
-  context-path: /
+  context-path: /contratempo
