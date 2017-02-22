@@ -5,7 +5,22 @@ $(document).ready(function() {
 //				+ value
 //				+ '" class="img-rounded" alt="Sem Imagem" width="50" height="50" />';
 //	};
-	
+
+// Controla os click da tabela
+	$(".clickable-row").click(function () {
+		$("#detalhe-aluno").slideUp(300);
+		$.ajax({
+			type: "GET",
+			url: "cliente/" + $(this).data("href"),
+			success: function (data) {
+// 			$("#detalhe-aluno").empty();
+				$("#detalhe-aluno").html(data);
+				$("#detalhe-aluno").slideDown(300);
+
+			}
+		});
+	});
+
 	function carregaTabela(value) {
 		$('#table-aluno').bootstrapTable({
 			data : value
