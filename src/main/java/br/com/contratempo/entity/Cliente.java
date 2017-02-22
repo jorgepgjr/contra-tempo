@@ -9,10 +9,12 @@ import java.util.Calendar;
 import java.util.List;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Cliente{
 	
 	@Id

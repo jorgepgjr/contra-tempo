@@ -10,10 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Professor{
 	
 	@Id

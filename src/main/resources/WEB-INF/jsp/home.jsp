@@ -1,17 +1,18 @@
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio Contra-Tempo Dança e Bem estar</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
-<link href="css/home.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<title>Studio Contra-Tempo Danï¿½a e Bem estar</title>
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
+<link href="../../css/home.css" rel="stylesheet" />
+<script type="text/javascript" src="../../js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript"
-	src="bootstrap/js/bootstrap-select.min.js"></script>
+	src="../../bootstrap/js/bootstrap-select.min.js"></script>
 </head>
 <jsp:useBean id="now" class="java.util.Date" />
 <body>
@@ -31,14 +32,14 @@
 					<li id="menu-turma"><a href="turma">Turma</a></li>
 					<li id="menu-professor"><a href="professor">Professor</a></li>
 					<li id="menu-evento"><a href="#">Evento</a></li>
-					<li id="menu-relatorio"><a href="#">Relatório</a></li>
+					<li id="menu-relatorio"><a href="#">Relatï¿½rio</a></li>
 					<li id="menu-about"><a href="#">About</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="container" id="loading-image" hidden="true">
-		<img alt="" src="img/cat_loading.gif" class="img-responsive center-img">
+		<img alt="" src="../../img/cat_loading.gif" class="img-responsive center-img">
 	</div>
 	<div class="container" id="panel-body">
 	
@@ -54,7 +55,7 @@
 			<div class="col-sm-4 well">
 				<h3 class="text-center">
 				Aniversariantes da Semana
-<!-- 					Aniversariantes do Mês de -->
+<!-- 					Aniversariantes do Mï¿½s de -->
 <%-- 					<fmt:formatDate pattern="MMMM" value="${now}" /> --%>
 				</h3>
 				<div class="input-group" id="tabela-alunos">
@@ -63,7 +64,7 @@
 							varStatus="loopStatus">
 							<li class="list-group-item"><img
 								src="${aniversariante.fotoUrl}" class="img-rounded"
-								alt="Imagem não encontrada" width="50" height="50"> <c:out
+								alt="Imagem nï¿½o encontrada" width="50" height="50"> <c:out
 									value="${aniversariante.nome}" /> <fmt:formatDate
 									pattern="dd/MM/yyy" value="${aniversariante.dataNasc.time}" />
 							</li>
@@ -85,5 +86,5 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="js/home.js"></script>
+<script type="text/javascript" src="../../js/home.js"></script>
 </html>

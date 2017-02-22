@@ -4,16 +4,14 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio Contra-Tempo Dança e Bem estar</title>
-
-
+<title>Studio Contra-Tempo Danï¿½a e Bem estar</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-<link href="css/home.css" rel="stylesheet" />
+<link href="../../css/home.css" rel="stylesheet" />
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -31,7 +29,7 @@
 				<li class="active"><a href="#">Aluno</a></li>
 				<li><a href="#">Professor</a></li>
 				<li><a href="#">Evento</a></li>
-				<li><a href="#">Relatório</a></li>
+				<li><a href="#">Relatï¿½rio</a></li>
 				<li><a href="about">About</a></li>
 			</ul>
 		</div>

@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Movimento{
 	
 	@Id

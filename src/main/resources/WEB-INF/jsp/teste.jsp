@@ -6,10 +6,10 @@
   <title>Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"  />
-  <link href="css/login.css" rel="stylesheet"  />
+  <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"  />
+  <link href="../../css/login.css" rel="stylesheet"  />
   <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
   
 </head>
 <body>
@@ -37,18 +37,18 @@
               <input type="text" placeholder="Celular" class="form-control">
             </div>
           </div>
-		  	 <legend>Endereço</legend>
+		  	 <legend>Endereï¿½o</legend>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Endereço: </label>
+            <label class="col-sm-2 control-label" for="textinput">Endereï¿½o: </label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Endereço" class="form-control">
+              <input type="text" placeholder="Endereï¿½o" class="form-control">
             </div>
           </div>
 
 		  <div class="form-group">
-            <label class="col-sm-2 control-label" for="textinput">Número:</label>
+            <label class="col-sm-2 control-label" for="textinput">Nï¿½mero:</label>
             <div class="col-sm-2">
-              <input type="text" placeholder="Nº" class="form-control">
+              <input type="text" placeholder="Nï¿½" class="form-control">
             </div>
              <label class="col-sm-3 control-label" for="textinput">Complemento:</label>
             <div class="col-sm-5">

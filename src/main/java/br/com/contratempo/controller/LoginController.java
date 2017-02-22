@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -117,9 +118,10 @@ public class LoginController {
 		return this.lista(model);
 	}
 	
-	@RequestMapping("/home")
+	@GetMapping("/home")
 	public ModelAndView home(ModelAndView model) {
-//		this.populaOBanco();
+		this.populaOBanco();
+
 		List<Turma> turmas = (List<Turma>) turmaRepository.findAll();
 		List<Cliente> clientes = clienteRepository.findByMatriculasPaga(false);
 		List<Cliente> aniversariantes = clienteRepository.findByDataNasc(Calendar.getInstance());
@@ -129,7 +131,7 @@ public class LoginController {
 		
 		model.setViewName("home");
 		model.addObject("turmas", turmas);
-		model.addObject("clientes", clientes);		
+		model.addObject("clientes", clientes);
 		model.addObject("aniversariantes", aniversariantes);
 
 		return model;

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity

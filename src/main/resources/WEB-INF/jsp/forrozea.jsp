@@ -6,10 +6,10 @@
   <title>Forrozea</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"  />
-  <link href="css/login.css" rel="stylesheet"  />
+  <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet"  />
+  <link href="../../css/login.css" rel="stylesheet"  />
   <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
   
 </head>
 <body>

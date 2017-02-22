@@ -2,8 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/home.css" rel="stylesheet" />
+<link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../css/home.css" rel="stylesheet" />
 <form:form id="aluno-detalhe-form" methodParam="PUT">
 	<div class="row">
 		<div class="form-group col-sm-2">
@@ -21,7 +21,7 @@
 						<th data-field="inicio">Inicio</th>
 						<th data-field="fim">Fim</th>
 						<th data-field="fim">Valor</th>
-						<th data-field="acao">Ação</th>
+						<th data-field="acao">Aï¿½ï¿½o</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -74,14 +74,14 @@
 			value="${clienteDetalhe.rg}">
 	</div>
 	<div class="form-group col-sm-6">
-		<label for="endereco">Endereço</label> <input type="text"
+		<label for="endereco">Endereï¿½o</label> <input type="text"
 			name="endereco" id="endereco" tabindex="1" class="form-control"
 			placeholder="Endereco" value="${clienteDetalhe.endereco}">
 	</div>
 	<div class="form-group col-sm-3">
 		<label for="profissao">Profissao</label> <input type="text"
 			name="profissao" id="profissao" tabindex="1" class="form-control"
-			placeholder="Profissão" value="${clienteDetalhe.profissao}">
+			placeholder="Profissï¿½o" value="${clienteDetalhe.profissao}">
 	</div>
 	<div class="form-group col-sm-3">
 		<label for="profissao">Como nos conheceu?</label> <input type="text"
@@ -100,4 +100,4 @@
 		<input type="submit" value="Atualizar">
 	</div>
 </form:form>
-<script type="text/javascript" src="js/aluno-detalhe.js"></script>
+<script type="text/javascript" src="../../../js/aluno-detalhe.js"></script>

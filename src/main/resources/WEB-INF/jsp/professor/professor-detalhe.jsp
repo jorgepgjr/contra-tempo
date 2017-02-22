@@ -2,8 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/home.css" rel="stylesheet" />
+<link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../css/home.css" rel="stylesheet" />
 <form:form id="professor-detalhe-form" methodParam="PUT">
 	<div class="row">
 		<div class="form-group col-sm-4">
@@ -54,16 +54,16 @@
 			value="${professorDetalhe.cpf}">
 	</div>
 	<div class="form-group col-sm-6">
-		<label for="endereco">Endereço</label> <input type="text"
+		<label for="endereco">Endereï¿½o</label> <input type="text"
 			name="endereco" id="endereco" tabindex="1" class="form-control"
 			placeholder="Endereco" value="${professorDetalhe.endereco}">
 	</div>
 	<div class="form-group col-sm-3">
-		<label for="dadoBanco">Dados Bancários</label>
+		<label for="dadoBanco">Dados Bancï¿½rios</label>
 		<input type="text" name="banco" id="banco" tabindex="1" class="form-control"
 		placeholder="Banco" value="${professorDetalhe.banco}"> 
 		<input type="text" name="agencia" id="agencia" tabindex="1" class="form-control"
-		placeholder="Agência" value="${professorDetalhe.agencia}">
+		placeholder="Agï¿½ncia" value="${professorDetalhe.agencia}">
 		<input type="text" name="contaCorrente" id="contaCorrente" tabindex="1" class="form-control"
 		placeholder="Conta Corrente" value="${professorDetalhe.contaCorrente}">
 	</div>
@@ -78,4 +78,4 @@
 		<input type="submit" value="Atualizar">
 	</div>
 </form:form>
-<script type="text/javascript" src="js/professor/professor-detalhe.js"></script>
+<script type="text/javascript" src="../../../js/professor/professor-detalhe.js"></script>

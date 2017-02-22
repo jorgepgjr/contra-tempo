@@ -2,10 +2,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css">
-<link href="css/home.css" rel="stylesheet" />
+<link href="../../../css/home.css" rel="stylesheet" />
 
 <div class="row well">
 	<div id="detalhe-professor">
@@ -35,4 +35,4 @@
 </div>
 <script type="text/javascript"
 	src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"></script>
-	<script type="text/javascript" src="js/professor/professores.js"></script>
+	<script type="text/javascript" src="../../../js/professor/professores.js"></script>

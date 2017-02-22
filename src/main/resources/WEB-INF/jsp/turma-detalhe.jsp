@@ -2,11 +2,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
-<link href="bootstrap/css/bootstrap-clockpicker.min.css"
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
+<link href="../../bootstrap/css/bootstrap-clockpicker.min.css"
 	rel="stylesheet" />
-<link href="css/home.css" rel="stylesheet" />
+<link href="../../css/home.css" rel="stylesheet" />
 
 <div class="row well">
 	<form action="">
@@ -33,23 +33,23 @@
 			</ul>
 		</div>
 		<div class="form-group col-sm-4">
-			<label for="nivel">Nível</label> <select name="nivel"
-				class="form-group selectpicker" id="nivel" title="Nível">
+			<label for="nivel">Nï¿½vel</label> <select name="nivel"
+				class="form-group selectpicker" id="nivel" title="Nï¿½vel">
 				<option value="0">0 - Iniciantes</option>
 				<option value="1">1 - Iniciados</option>
-				<option value="2">2 - Intermediário</option>
+				<option value="2">2 - Intermediï¿½rio</option>
 			</select>
 		</div>
 		<div class="form-group col-sm-4">
-			<label class="col-sm-4 control-label" for="dia">Horário:</label> <select
+			<label class="col-sm-4 control-label" for="dia">Horï¿½rio:</label> <select
 				name="dia" class="selectpicker col-sm-4" id="dia"
 				title="Dia da Semana">
 				<option value="2">Segunda</option>
-				<option value="3">Terça</option>
+				<option value="3">Terï¿½a</option>
 				<option value="4">Quarta</option>
 				<option value="5">Quinta</option>
 				<option value="6">Sexta</option>
-				<option value="7">Sábado</option>
+				<option value="7">Sï¿½bado</option>
 				<option value="1">Domingo</option>
 			</select>
 			<div class="col-sm-4 input-group clockpicker" data-autoclose="true">
@@ -63,7 +63,7 @@
 
 </div>
 
-<!-- 		Horário: -->
+<!-- 		Horï¿½rio: -->
 <%-- 		<fmt:formatDate pattern="EEEE" value="${turma.diaEHora.time}" /> --%>
 <%-- 		<fmt:formatDate pattern="HH:mm" value="${turma.diaEHora.time}" /> --%>
 
@@ -80,7 +80,7 @@
 						<th data-field="nome">Nome</th>
 						<th data-field="telefone">Telefone</th>
 						<th data-field="email">Email</th>
-						<th data-field="inicio">Início</th>
+						<th data-field="inicio">Inï¿½cio</th>
 						<th data-field="fim">Fim</th>
 						<th data-field="pago">Pago</th>
 						<th data-field="valor">Valor</th>
@@ -117,4 +117,4 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="js/turma/turma-detalhe.js"></script>
+<script type="text/javascript" src="../../js/turma/turma-detalhe.js"></script>

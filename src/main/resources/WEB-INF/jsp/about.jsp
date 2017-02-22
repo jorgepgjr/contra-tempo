@@ -5,10 +5,10 @@
 <head>
 <title>home</title>
 
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/login.css" rel="stylesheet" />
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../css/login.css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -19,7 +19,7 @@
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li><a href="home">Inclusão</a></li>
+					<li><a href="home">Inclusï¿½o</a></li>
 					<li><a href="lista">Lista</a></li>
 					<li class="active"><a href="about">About</a></li>
 					<li><a href="http://www.pudim.com.br">Pudim</a></li>
