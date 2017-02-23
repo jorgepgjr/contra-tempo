@@ -1,11 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css">
-<link th:href="@{/css/home.css}" rel="stylesheet"/>
+<head>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" />
+    <link th:href="@{/css/home.css}" rel="stylesheet"/>
+</head>
 
 <div class="row well">
-    <div id="detalhe-aluno">
-    </div>
+    <div id="detalhe-aluno"/>
 </div>
 
 <div class="row well">
@@ -24,7 +25,7 @@
         </div>
         <div class="col-sm-12">
             <div class="input-group" id="tabela-alunos">
-                <table class="table table-striped" id="table-aluno">
+                <table class="table table-striped" id="table-aluno" th:fragment="aluno-tabela">
                     <thead>
                     <tr>
                         <th data-field="matricula">Matricula</th>
@@ -34,9 +35,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="cliente : ${clientes}" class="clickable-row" th:attr="data-href='${cliente.id}'">
-                        <td><span th:value="${cliente.id}"/></td>
-                        <td><span th:value="${cliente.nome}"/></td>
+                    <tr th:each="cliente : ${clientes}" class="clickable-row" th:attr="data-href=${cliente.id}">
+                        <td><span th:text="${cliente.id}"/></td>
+                        <td><span th:text="${cliente.nome}"/></td>
                         <td><img src="${cliente.fotoUrl}" class="img-rounded" alt="Sem Imagem" width="50" height="50"/>
                         </td>
                         <td>
@@ -55,7 +56,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript"
-        src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"/>
+<script type="text/javascript" src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"/>
 <script type="text/javascript" th:src="@{/js/aluno/alunos.js}"/>
 </html>
