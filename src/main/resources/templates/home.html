@@ -67,9 +67,7 @@
 			<div class="col-sm-12">
 				<div class="well">
 					<h3 class="text-center">Pagamentos em Aberto</h3>
-					<div class="input-group" id="tabela-alunos">
-						<jsp:include page="home/home-matriculas.jsp" />
-					</div>
+					<div th:replace="home/home-matriculas :: home-matriculas" />
 				</div>
 			</div>
 		</div>
