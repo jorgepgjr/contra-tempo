@@ -1,6 +1,13 @@
-$(document).ready(function() {
+	function showLoading(){
+		$('#loading-image').show();
+		$('#panel-body').hide();
+	}
+	function hideLoading(){
+		$('#loading-image').hide();
+		$('#panel-body').show();
+	}
 
-	/*Menus*/
+    /*Menus*/
 	function carregaTela(tela, id) {
 		$("#panel-body").empty();
 		$("#panel-body").html(tela);
@@ -10,6 +17,12 @@ $(document).ready(function() {
 		}
 		hideLoading();
 	}
+
+	function carregaTabela(value) {
+		$('#table-aluno').bootstrapTable({
+			data : value
+		})
+	};
 
 	$("#menu-aluno").click(function() {
 		showLoading();
@@ -47,12 +60,6 @@ $(document).ready(function() {
 		});
 		return false; // stop the browser following the link
 	});
-	
-	function carregaTabela(value) {
-		$('#table-aluno').bootstrapTable({
-			data : value
-		})
-	};
 
 	$(".btn-pagar").click(function(event) {
 		event.preventDefault();		
@@ -63,15 +70,4 @@ $(document).ready(function() {
 			alert("Matricula paga!");
 			window.location.replace("/home");
 		});
-	});	
-	
-	function showLoading(){
-		$('#loading-image').show();
-		$('#panel-body').hide();		
-	}
-	function hideLoading(){
-		$('#loading-image').hide();
-		$('#panel-body').show();
-	}
-	
-});
+	});

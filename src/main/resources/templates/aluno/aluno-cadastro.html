@@ -1,104 +1,115 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 </head>
-<script type="text/javascript" src="../../../js/jquery.mask.min.js"></script>
-<script type="text/javascript" src="../../../js/aluno/aluno-cadastro.js"></script>
-
 <div class="well" th:fragment="aluno-cadastro">
-	<h3 class="text-center">Cadastro de Novo Aluno</h3>
-	<form id="register-form" action="cliente" method="POST"
-		role="form" style="display: block;" modelAttribute="cliente">
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}" />
+    <script type="text/javascript" th:src="@{/js/aluno/aluno-cadastro.js}" />
 
-		<div class="row">
-			<div class="form-group col-sm-12">
-				<label for="nome">Nome</label>
-				<div class="input-group">
-					<input th:attr="required=true" type="text" name="nome" id="nome" tabindex="1" class="form-control" placeholder="Nome completo" value="" />
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-asterisk" />
+    <div id="messages" class="hide" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div id="messages_content">
+        </div>
+    </div>
+
+    <h3 class="text-center">Cadastro de Novo Aluno</h3>
+    <form id="register-form" action="cliente" method="POST"
+          role="form" style="display: block;" modelAttribute="cliente">
+
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <label for="nome">Nome</label>
+                <div class="input-group">
+                    <input th:attr="required=true" type="text" name="nome" id="nome" tabindex="1"
+                           class="form-control" placeholder="Nome completo" value=""/>
+                    <span class="input-group-addon">
+						<span class="glyphicon glyphicon-asterisk"/>
 					</span>
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
 
-		<div class="row">
-			<div class="form-group col-sm-8">
-				<label for="endereco">Endereço</label> <input type="text"
-					name="endereco" id="endereco" tabindex="1" class="form-control"
-					placeholder="Endereço" value="" />
-			</div>
-			<div class="form-group col-sm-4">
-				<label for="cidade">Cidade</label> <input type="text" name="cidade"
-					id="cidade" tabindex="1" class="form-control" placeholder="Cidade"
-					value="Santos" />
-			</div>
-		</div>
+        <div class="row">
+            <div class="form-group col-sm-8">
+                <label for="endereco">Endereço</label> <input type="text"
+                                                              name="endereco" id="endereco" tabindex="1"
+                                                              class="form-control"
+                                                              placeholder="Endereço" value=""/>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="cidade">Cidade</label> <input type="text" name="cidade"
+                                                          id="cidade" tabindex="1" class="form-control"
+                                                          placeholder="Cidade"
+                                                          value="Santos"/>
+            </div>
+        </div>
 
-		<div class="row">
-			<div class="form-group col-sm-4">
-				<label for="profissao">Profissão</label> <input type="text"
-					name="profissao" id="profissao" tabindex="1" class="form-control"
-					placeholder="Ex: Desenvolvedor, Médico" value="" />
-			</div>
-			<div class="form-group col-sm-4">
-				<label for="dataNasc">Data de Nascimento</label> <input type="date"
-					name="dataNasc" id="dataNasc" tabindex="1" class="form-control"
-					placeholder="dataNasc" value="" />
-			</div>
-			<div class="form-group col-sm-4">
-				<label for="telefone">Telefone</label>
-				<div class="input-group">
-					<input th:attr="required=true" type="tel" title="(99) 12345-1234" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" name="telefone" id="telefone" tabindex="1"
-						class="form-control" placeholder="Telefone" value="" />
-					<span class="input-group-addon"> <span
-						class="glyphicon glyphicon-asterisk"></span>
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label for="profissao">Profissão</label> <input type="text"
+                                                                name="profissao" id="profissao" tabindex="1"
+                                                                class="form-control"
+                                                                placeholder="Ex: Desenvolvedor, Médico" value=""/>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="dataNasc">Data de Nascimento</label> <input type="date"
+                                                                        name="dataNasc" id="dataNasc" tabindex="1"
+                                                                        class="form-control"
+                                                                        placeholder="dataNasc" value=""/>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="telefone">Telefone</label>
+                <div class="input-group">
+                    <input th:attr="required=true" type="tel" title="(99) 12345-1234"
+                           pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" name="telefone" id="telefone" tabindex="1"
+                           class="form-control" placeholder="Telefone" value=""/>
+                    <span class="input-group-addon"> <span
+                            class="glyphicon glyphicon-asterisk"></span>
 					</span>
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
 
-		<div class="row">
-			<div class="form-group col-sm-6">
-				<label for="email">E-mail</label> <input type="email" name="email"
-					id="email" tabindex="1" class="form-control" placeholder="E-mail"
-					value="" />
-			</div>
-			<div class="form-group col-sm-6">
-				<label for="rg">RG</label> <input type="text" name="rg" id="rg"
-					tabindex="1" class="form-control" placeholder="Ex: 32.914.787-x" value="" />
-			</div>
-		</div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="email">E-mail</label> <input type="email" name="email"
+                                                         id="email" tabindex="1" class="form-control"
+                                                         placeholder="E-mail"
+                                                         value=""/>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="rg">RG</label> <input type="text" name="rg" id="rg"
+                                                  tabindex="1" class="form-control" placeholder="Ex: 32.914.787-x"
+                                                  value=""/>
+            </div>
+        </div>
 
-		<div class="form-group">
-			<label for="comoConheceu">Como Nos Conheceu</label> <input
-				type="text" name="comoConheceu" id="comoConheceu" tabindex="1"
-				class="form-control" placeholder="Ex: Facebook, Site, Amigos..."
-				value="" />
-		</div>
-		<div class="form-group">
-			<label for="sel1">Turmas</label>
+        <div class="form-group">
+            <label for="comoConheceu">Como Nos Conheceu</label> <input
+                type="text" name="comoConheceu" id="comoConheceu" tabindex="1"
+                class="form-control" placeholder="Ex: Facebook, Site, Amigos..."
+                value=""/>
+        </div>
+        <div class="form-group">
+            <label for="sel1">Turmas</label>
             <!--multiple-->
-            <select th:attr="multiple=true" class="selectpicker" id="sel1"  title="Escolha as turmas">
+            <select th:attr="multiple=true" class="selectpicker" id="sel1" title="Escolha as turmas" name="turmas">
                 <option th:each="turma : ${turmas}" th:value="${turma.id}" th:text="${turma.nome}"></option>
-				<!--<c:forEach items="${turmas}" var="turma" varStatus="loopStatus">-->
-					<!--<option value="${turma.id}"><c:out value="${turma.nome}" /></option>-->
-				<!--</c:forEach>-->
-			</select>
-		</div>
+            </select>
+        </div>
 
-		<div>
-			<strong><span class="glyphicon glyphicon-asterisk"></span>Campos
-				Obrigatórios</strong>
-		</div>
+        <div>
+            <strong><span class="glyphicon glyphicon-asterisk"></span>Campos
+                Obrigatórios</strong>
+        </div>
 
-		<div class="form-group">
-			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
-					<input type="submit" name="register-submit" id="register-submit"
-						tabindex="4" class="form-control btn btn-register" value="Salvar" />
-				</div>
-			</div>
-		</div>
-	</form>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" name="register-submit" id="register-submit"
+                           tabindex="4" class="form-control btn btn-register" value="Salvar"/>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 </html>
