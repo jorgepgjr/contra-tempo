@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<table class="table table-striped" id="table-aluno" th:fragment="home-matriculas">
+  <thead>
+  <tr>
+    <th data-field="matricula">Matricula</th>
+    <th data-field="nome">Nome</th>
+    <th data-field="fotoUrl">Foto</th>
+    <th data-field="turmas">Turmas</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="cliente : ${clientes}" th:attr="data-href='${cliente.id}'">
+    <td><span th:value="${cliente.id}"/></td>
+    <td><span th:value="${cliente.nome}"/></td>
+    <td><img th:src="${cliente.fotoUrl}" class="img-rounded" alt="Sem Imagem" width="50"
+             height="50"/></td>
+    <td>
+      <div th:each="matricula,loopStatus :${cliente.matriculas}">
+        <div items="${cliente.matriculas}" var="matricula" varStatus="loopStatus">
+          <span th:text="${matricula.turma.nome}"/>
+          <span th:text="'|	Inc:' + ${#dates.format(matricula.dtInicio, 'dd/MM/yyy')}"/>
+          <span th:text="'Fim: ' + ${#dates.format(matricula.dtFim, 'dd/MM/yyy')}"/>
+          <span th:text="' | ' + ${matricula.valor}" type="currency"/>
+          <input th:if="${!matricula.pago}" class="btn btn-pagar" type="submit" value="Pagar"
+                 th:id="${matricula.id}"/>
+        </div>
+        <hr th:if="${!loopStatus.last}"/>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</html>

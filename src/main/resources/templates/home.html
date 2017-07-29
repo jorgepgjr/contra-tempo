@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Studio Contra-Tempo Dança e Bem estar</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/bootstrap-select.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/home.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/jquery-2.2.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-select.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/home.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#myNavbar">
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home">Studio Contra-Tempo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li id="menu-aluno"><a href="aluno">Aluno</a></li>
+                <li id="menu-turma"><a href="turma">Turma</a></li>
+                <li id="menu-professor"><a href="professor">Professor</a></li>
+                <li id="menu-evento"><a href="#">Evento</a></li>
+                <li id="menu-relatorio"><a href="#">Relatório</a></li>
+                <li id="menu-about"><a href="#">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container" id="loading-image" hidden="true">
+    <img alt="" src="../../img/cat_loading.gif" class="img-responsive center-img"/>
+</div>
+<div class="container" id="panel-body">
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div th:replace="aluno/aluno-cadastro :: aluno-cadastro"/>
+        </div>
+        <div class="col-sm-4 well">
+            <h3 class="text-center">
+                Aniversariantes da Semana
+                <td th:text="${#dates.format(#calendars.createNow(), 'MMMM')}"></td>
+            </h3>
+            <div class="input-group" id="tabela-alunos">
+                <ul class="list-group">
+                    <li th:each="aniversariante : ${aniversariantes}" class="list-group-item">
+                        <img th:src="${aniversariante.fotoUrl}" class="img-rounded"
+                             alt="Imagem não encontrada" width="50" height="50"/>
+                        <span th:text="${aniversariante.nome} + ' ' + ${#dates.format(aniversariante.dataNasc, 'dd/MM/yyy')}"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="well">
+                <h3 class="text-center">Pagamentos em Aberto</h3>
+                <div th:replace="home/home-matriculas :: home-matriculas"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

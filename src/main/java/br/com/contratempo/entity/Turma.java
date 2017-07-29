@@ -16,9 +16,11 @@ import javax.persistence.TemporalType;
 
 import br.com.contratempo.vo.TurmaVO;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Turma {
 	
 	public static String SALA1 = "Sala 1";
@@ -46,10 +48,6 @@ public class Turma {
 	@OneToMany(mappedBy= "turma")
 	private List<Matricula> matriculas;
 
-	public Turma() {
-		super();
-	}
-	
 	public Turma(TurmaVO turmaVO) {
 		super();
 		this.modalidades = turmaVO.getModalidades();

@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" />
+    <link th:href="@{/css/home.css}" rel="stylesheet"/>
+</head>
+
+<div class="row well">
+    <div id="detalhe-aluno"/>
+</div>
+
+<div class="row well">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <form class="navbar-form" role="search" id="search-form">
+                <div class="input-group">
+                    <input type="text" name="search" id="search" tabindex="1"
+                           class="form-control"
+                           placeholder="Nome do Aluno ou Numero de matricula..." value=""/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-search"></span>
+					</span>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12">
+            <div class="input-group" id="tabela-alunos">
+                <table class="table table-striped" id="table-aluno" th:fragment="aluno-tabela">
+                    <thead>
+                    <tr>
+                        <th data-field="matricula">Matricula</th>
+                        <th data-field="nome">Nome</th>
+                        <th data-field="fotoUrl">Foto</th>
+                        <th data-field="turmas">Turmas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cliente : ${clientes}" class="clickable-row" th:attr="data-href=${cliente.id}">
+                        <td><span th:text="${cliente.id}"/></td>
+                        <td><span th:text="${cliente.nome}"/></td>
+                        <td><img th:src="${cliente.fotoUrl}" class="img-rounded" alt="Sem Imagem" width="50" height="50"/>
+                        </td>
+                        <td>
+                            <span th:each="matricula,loopStatus :${cliente.matriculas}">
+                                <span th:text="${matricula.turma.nome}"/>
+                                <span th:text="'|	Inc:' + ${#dates.format(matricula.dtInicio, 'dd/MM/yyy')}"/>
+                                <span th:text="'Fim: ' + ${#dates.format(matricula.dtFim, 'dd/MM/yyy')}"/>
+                                <span th:text="' | ' + ${matricula.valor}" type="currency"/>
+                                <hr th:if="${!loopStatus.last}"/>
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://rawgit.com/wenzhixin/bootstrap-table/master/dist/bootstrap-table.min.js"/>
+<script type="text/javascript" th:src="@{/js/aluno/alunos.js}"/>
+</html>

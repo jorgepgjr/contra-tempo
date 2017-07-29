@@ -5,7 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
 public class Modalidade{
 	
 	@Id
@@ -17,21 +22,4 @@ public class Modalidade{
 		super();
 		this.nome = nome;
 	}
-	public Modalidade() {
-		super();
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	
 }

@@ -11,10 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Usuario implements UserDetails {
 	private static final long serialVersionUID = -1999601982569255029L;
 	@Id
@@ -31,10 +35,6 @@ public class Usuario implements UserDetails {
 		super();
 		this.username = username;
 		this.email = email;
-	}
-
-	public Usuario() {
-		super();
 	}
 
 	@Override
@@ -61,45 +61,4 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		return false;
 	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
 }

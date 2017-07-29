@@ -1,0 +1,11 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<div id="message" role="alert" class="hide alert alert-success alert-dismissible" th:fragment="aluno-cadastro-success">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <div id="messages_content">
+        <strong><span th:text="${cliente.nome}"/> </strong> cadastrado, Matricula: <strong> <span th:text="${cliente.id}"/> </strong>.
+    </div>
+</div>
+</html>

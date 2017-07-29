@@ -1,0 +1,19 @@
+
+server:
+  port: 8080
+  context-path:
+logging:
+ level:
+  root: ERROR
+  org:
+   springframework:
+    web: DEBUG
+    security: DEBUG
+security:
+  user:
+    password: 123
+    name: user
+  ignored: /**/**
+spring:
+  thymeleaf:
+    cache: false
