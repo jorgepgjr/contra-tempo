@@ -77,7 +77,7 @@ public class ClienteController {
                 matriculaRepository.save(matricula);
             });
         }
-        return new ModelAndView("redirect:/cliente");
+        return new ModelAndView("aluno/aluno-cadastro-success :: aluno-cadastro-success","cliente",clienteSalvo);
     }
 
     //TODO: trocar para PUT e configurar

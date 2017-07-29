@@ -1,10 +1,11 @@
-function mensagemDeSucesso(){
-    $('#messages').removeClass('hide').addClass('alert alert-success alert-dismissible').slideDown().show();
-    $('#messages_content').html('<strong>' formData.nome '</strong> cadastrado com sucesso.');
-}
-
 $(document).ready(function() {
-	
+
+	function mensagemDeSucesso(data){
+        $('#messages').html(data);
+        $('#message').removeClass('hide').slideDown().show();
+
+    }
+
 	$("#register-form").submit(function(event) {
 		event.preventDefault();
 		var formData = $("#register-form").serialize();
@@ -12,11 +13,10 @@ $(document).ready(function() {
 			type : "POST",
 			url : "cliente",
 			data : formData,
-			success:
-			function(result){
-			      $('#messages').removeClass('hide').addClass('alert alert-success alert-dismissible').slideDown().show();
-                  $('#messages_content').html('<strong>' formData.nome '</strong> cadastrado com sucesso.');
-            }});
+			success: function(data) {
+                mensagemDeSucesso(data);
+                $("#register-form")[0].reset();
+            }
 		})
 		.done(function(response) {
 //			carregaTela(response);
@@ -25,7 +25,10 @@ $(document).ready(function() {
 
 	$('#rg').mask('AA.AAA.AAA-A');
 	$('#telefone').mask('(99) 99999-9999');
-	
+});
+
+
+
 //    $('#register-form')
 //        .formValidation({
 //            framework: 'bootstrap',
@@ -45,4 +48,3 @@ $(document).ready(function() {
 //            }
 //        })
 //        .find('[name="telefone"]').mask('(00)00000-0000');
-});

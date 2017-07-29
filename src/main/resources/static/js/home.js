@@ -24,50 +24,52 @@
 		})
 	};
 
-	$("#menu-aluno").click(function() {
-		showLoading();
-		$.ajax({
-			type : "GET",
-			url : "cliente",
-			success : function(data) {				
-				carregaTela(data, 'menu-aluno');
-				
-			}
-		});
-		return false; // stop the browser following the link
-	});
+$( document ).ready(function() {
+   $("#menu-aluno").click(function() {
+   		showLoading();
+   		$.ajax({
+   			type : "GET",
+   			url : "cliente",
+   			success : function(data) {
+   				carregaTela(data, 'menu-aluno');
 
-	$("#menu-turma").click(function() {
-		showLoading();
-		$.ajax({
-			type : "GET",
-			url : "turma",
-			success : function(data) {
-				carregaTela(data, 'menu-turma');
-			}
-		});
-		return false; // stop the browser following the link
-	});
-	
-	$("#menu-professor").click(function() {
-		showLoading();
-		$.ajax({
-			type : "GET",
-			url : "professor",
-			success : function(data) {
-				carregaTela(data, 'menu-professor');
-			}
-		});
-		return false; // stop the browser following the link
-	});
+   			}
+   		});
+   		return false; // stop the browser following the link
+   	});
 
-	$(".btn-pagar").click(function(event) {
-		event.preventDefault();		
-		$.ajax({
-			type : "POST",
-			url : "matricula/"+this.id+"/pagar"
-		}).done(function() {
-			alert("Matricula paga!");
-			window.location.replace("/home");
-		});
-	});
+   	$("#menu-turma").click(function() {
+   		showLoading();
+   		$.ajax({
+   			type : "GET",
+   			url : "turma",
+   			success : function(data) {
+   				carregaTela(data, 'menu-turma');
+   			}
+   		});
+   		return false; // stop the browser following the link
+   	});
+
+   	$("#menu-professor").click(function() {
+   		showLoading();
+   		$.ajax({
+   			type : "GET",
+   			url : "professor",
+   			success : function(data) {
+   				carregaTela(data, 'menu-professor');
+   			}
+   		});
+   		return false; // stop the browser following the link
+   	});
+
+   	$(".btn-pagar").click(function(event) {
+   		event.preventDefault();
+   		$.ajax({
+   			type : "POST",
+   			url : "matricula/"+this.id+"/pagar"
+   		}).done(function() {
+   			alert("Matricula paga!");
+   			window.location.replace("/home");
+   		});
+   	});
+});
