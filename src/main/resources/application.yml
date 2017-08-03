@@ -16,11 +16,11 @@ security:
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   thymeleaf:
     cache: false
   profiles:
-    active: production
+    active: development
 ---
 
 spring:
@@ -38,4 +38,4 @@ spring:
       username: gjspbrgrojbuxw
       password: vXydZLAjtUdgC24s6t2jRTLPfB
 server:
-  port: 80
+  port: 8080
