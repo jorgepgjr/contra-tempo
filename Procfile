@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar -Dspring.profiles.active=production target/contra-tempo.jar
+web: java -jar -Dspring.profiles.active=production target/contra-tempo.jar
