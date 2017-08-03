@@ -1,1 +1,1 @@
-web: java -jar -Dspring.profiles.active=production target/contra-tempo.jar
+web: java -jar -Dspring.profiles.active=development target/contra-tempo.jar
