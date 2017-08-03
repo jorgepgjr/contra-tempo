@@ -1,4 +1,3 @@
-
 server:
   port: 8080
   context-path:
@@ -17,3 +16,21 @@ security:
 spring:
   thymeleaf:
     cache: false
+  profiles:
+    active: development
+---
+
+spring:
+    profiles: development
+    datasource:
+      url: jdbc:h2:mem:contra-tempo;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    jpa:
+     database: H2
+---
+
+spring:
+    profiles: production
+    datasource:
+      url: jdbc:mysql://us-cdbr-iron-east-03.cleardb.net/heroku_27c9c4cb5bf562d?reconnect=true
+      username: bcd784f9327af7
+      password: e9b5131c
