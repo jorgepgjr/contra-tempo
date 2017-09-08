@@ -52,15 +52,14 @@
 			<artifactId>jquery-maven</artifactId>
 			<version>1.7.2</version>
 		</dependency>
-		 <dependency>
-             <groupId>com.h2database</groupId>
-             <artifactId>h2</artifactId>
-		 </dependency>
+		 <!--<dependency>-->
+             <!--<groupId>com.h2database</groupId>-->
+             <!--<artifactId>h2</artifactId>-->
+		 <!--</dependency>-->
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<finalName>contra-tempo</finalName>

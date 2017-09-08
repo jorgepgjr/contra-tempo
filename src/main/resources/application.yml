@@ -16,11 +16,11 @@ security:
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
   thymeleaf:
     cache: false
   profiles:
-    active: development
+    active: production
 ---
 
 spring:
@@ -34,8 +34,8 @@ spring:
 spring:
     profiles: production
     datasource:
-      url: jdbc:postgresql://ec2-184-72-250-49.compute-1.amazonaws.com:5432/d7afbep2826ios?sslmode=require
-      username: gjspbrgrojbuxw
-      password: vXydZLAjtUdgC24s6t2jRTLPfB
+      url: jdbc:mysql://us-cdbr-iron-east-03.cleardb.net/heroku_27c9c4cb5bf562d?reconnect=true
+      username: bcd784f9327af7
+      password: e9b5131c
 server:
   port: 8080
