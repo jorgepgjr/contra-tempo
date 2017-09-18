@@ -16,106 +16,56 @@
 
 package br.com.contratempo.controller;
 
+import br.com.contratempo.entity.*;
+import br.com.contratempo.repository.*;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import br.com.contratempo.entity.Cliente;
-import br.com.contratempo.entity.Constants;
-import br.com.contratempo.entity.Matricula;
-import br.com.contratempo.entity.Modalidade;
-import br.com.contratempo.entity.Professor;
-import br.com.contratempo.entity.Registro;
-import br.com.contratempo.entity.Turma;
-import br.com.contratempo.repository.ClienteRepository;
-import br.com.contratempo.repository.ConstantsRepository;
-import br.com.contratempo.repository.MatriculaRepository;
-import br.com.contratempo.repository.ModalidadeRepository;
-import br.com.contratempo.repository.ProfessorRepository;
-import br.com.contratempo.repository.RegistroRepository;
-import br.com.contratempo.repository.TurmaRepository;
-import br.com.contratempo.vo.Login;
-
+@Slf4j
 @Controller
 public class LoginController {
-	
-	@Autowired
-    RegistroRepository repository;
-	
-	@Autowired
-    ConstantsRepository constantsRepository;
-	
-	@Autowired
-    ModalidadeRepository modalidadeRepository;
-	
-	@Autowired
-	ProfessorRepository professorRepository;
-	
-	@Autowired
-	TurmaRepository turmaRepository;
-	
-	@Autowired
-	ClienteRepository clienteRepository;
-	
-	@Autowired
-	MatriculaRepository matriculaRepository;
-	
-	ArrayList<Registro> registros;
-	
-	@Value("${application.message:Hello World}")
-	private String message = "Hello World";
-	
 
-	@RequestMapping("/validaLogin")
-	public String initLogin(@ModelAttribute Login login, Model model) {
-		
-		System.out.println("TENTATIVA DE LOGIN USUARIO: " + login.getUsername() + "      SENHA: " + login.getPassword());
-		if ("jorge".equals(login.getUsername()) && "meuHeroi".equals(login.getPassword())) {
-			System.out.println("LOGIN COM SUCESSO");	
-		}else {
-			System.out.println("FALHA NO ACESSO!!");
-		}
-		return "redirect:/home";
-	}
-
-	@RequestMapping("/registrar2")
-	public ModelAndView initLogin(@ModelAttribute Registro registro, Model model) {		
-		System.out.println("REGISTRO: " + registro.getUsername() + "      EMAIL: " + registro.getEmail());
-		repository.save(new Registro(registro.getUsername(), registro.getEmail()));
-		return this.lista(new ModelAndView());
-	}
+	@Autowired
+	private ConstantsRepository constantsRepository;
 	
-	@RequestMapping("/registrar")
-	public ModelAndView initLogin(@ModelAttribute Cliente cliente, Model model) {		
-		//		repository.save(new Registro(cliente.getUsername(), registro.getEmail()));
-		return this.lista(new ModelAndView());
-	}
-
-	@RequestMapping("/lista")
-	public ModelAndView lista(ModelAndView model) {
-		registros = (ArrayList<Registro>) repository.findAll();
-		for (Registro registro : registros) {
-			System.out.println("USUARIO: " + registro.getUsername() + "      EMAIL: " + registro.getEmail());
-		}
-		model.setViewName("lista");
-		model.addObject("registros", registros);
-		return model;
-	}
+	@Autowired
+	private ModalidadeRepository modalidadeRepository;
 	
-	@RequestMapping("/limpar")
-	public ModelAndView limpar(ModelAndView model) {
-		modalidadeRepository.deleteAll();
-		return this.lista(model);
+	@Autowired
+	private ProfessorRepository professorRepository;
+	
+	@Autowired
+	private TurmaRepository turmaRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private MatriculaRepository matriculaRepository;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	@GetMapping("/login")
+	public String login(Model model) {
+		model.addAttribute("usuario", new Usuario());
+		return "login";
 	}
 	
 	@GetMapping("/home")
@@ -141,7 +91,36 @@ public class LoginController {
 	public String about() {
 		return "about";
 	}
-	
+
+	@RequestMapping("/cheat")
+	public String cheat() {
+		final Usuario jorge = new Usuario();
+		jorge.setPassword(bCryptPasswordEncoder.encode("123"));
+		jorge.setEmail("jorgepgjr@gmail.com");
+		jorge.setUsername("Jorgepgjr");
+		Usuario save = usuarioRepository.save(jorge);
+		log.error("Criado {} ", save);
+
+
+		return "/login";
+	}
+
+
+	@PostMapping("/newUser")
+	public String criaUsuario(@Valid Usuario usuario) {
+		if (usuarioRepository.findByUsername(usuario.getUsername()) != null){
+			log.debug("Usuário {} já encontrado na base", usuario.getUsername());
+		} else if (usuarioRepository.findByEmail(usuario.getEmail()) != null){
+			log.debug("Email {} já cadastrado na base", usuario.getEmail());
+		} else {
+			usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+			usuarioRepository.save(usuario);
+		}
+
+
+		return "redirect:login";
+	}
+
 	//TODO: Remover quando for rodar a aplicacao
 	private void populaOBanco(){
 		List<Modalidade> modalidades = (List<Modalidade>) modalidadeRepository.findAll();

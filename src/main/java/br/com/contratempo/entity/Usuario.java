@@ -13,7 +13,9 @@ import javax.persistence.ManyToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -25,6 +27,7 @@ public class Usuario implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String username;
+	@Email
 	private String email;
 	private String password;
 	
@@ -39,12 +42,12 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		return roles;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -54,11 +57,11 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return false;
+		return true;
 	}
 }

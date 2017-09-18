@@ -2,17 +2,17 @@ server:
   port: 8080
   context-path:
 logging:
- level:
-  root: ERROR
-  org:
-   springframework:
-    web: DEBUG
-    security: DEBUG
+#  file: /var/log/contratempo.log
+  level:
+    org:
+      springframework:
+        web: ERROR
+        security: ERROR
 security:
   user:
     password: 123
     name: user
-  ignored: /**/**
+#  ignored: /**/**
 spring:
   jpa:
     hibernate:
@@ -20,7 +20,7 @@ spring:
   thymeleaf:
     cache: false
   profiles:
-    active: production
+    active: development
 ---
 
 spring:

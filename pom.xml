@@ -43,6 +43,10 @@
             <optional>true</optional>
         </dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.efsavage.twitter.bootstrap</groupId>
 			<artifactId>bootstrap-maven</artifactId>
 			<version>2.0.4</version>
@@ -52,10 +56,10 @@
 			<artifactId>jquery-maven</artifactId>
 			<version>1.7.2</version>
 		</dependency>
-		 <!--<dependency>-->
-             <!--<groupId>com.h2database</groupId>-->
-             <!--<artifactId>h2</artifactId>-->
-		 <!--</dependency>-->
+		 <dependency>
+             <groupId>com.h2database</groupId>
+             <artifactId>h2</artifactId>
+		 </dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
