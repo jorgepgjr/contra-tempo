@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,10 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -62,13 +60,16 @@ public class LoginController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Autowired
+	private RoleRepository roleRepository;
+
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("usuario", new Usuario());
 		return "login";
 	}
 	
-	@GetMapping("/home")
+	@GetMapping({"/home", "/"})
 	public ModelAndView home(ModelAndView model) {
 		this.populaOBanco();
 
@@ -94,31 +95,20 @@ public class LoginController {
 
 	@RequestMapping("/cheat")
 	public String cheat() {
-		final Usuario jorge = new Usuario();
-		jorge.setPassword(bCryptPasswordEncoder.encode("123"));
-		jorge.setEmail("jorgepgjr@gmail.com");
-		jorge.setUsername("Jorgepgjr");
-		Usuario save = usuarioRepository.save(jorge);
-		log.error("Criado {} ", save);
+		if (usuarioRepository.findByUsername("jorgepgjr") == null ){
+			final Usuario jorge = new Usuario();
+			jorge.setNome("Jorge Peres Guimarães Junior");
+			jorge.setPassword(bCryptPasswordEncoder.encode("123"));
+			jorge.setEmail("jorgepgjr@gmail.com");
+			jorge.setUsername("jorgepgjr");
 
+			Role role = roleRepository.save(Role.ROLE_ADMIN);
+			jorge.addRole(role);
+			Usuario save = usuarioRepository.save(jorge);
 
-		return "/login";
-	}
-
-
-	@PostMapping("/newUser")
-	public String criaUsuario(@Valid Usuario usuario) {
-		if (usuarioRepository.findByUsername(usuario.getUsername()) != null){
-			log.debug("Usuário {} já encontrado na base", usuario.getUsername());
-		} else if (usuarioRepository.findByEmail(usuario.getEmail()) != null){
-			log.debug("Email {} já cadastrado na base", usuario.getEmail());
-		} else {
-			usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
-			usuarioRepository.save(usuario);
+			log.error("Criado {} ", save);
 		}
-
-
-		return "redirect:login";
+		return "login";
 	}
 
 	//TODO: Remover quando for rodar a aplicacao
@@ -229,8 +219,5 @@ public class LoginController {
 			matriculaRepository.save(matricula5);
 			matriculaRepository.save(matricula6);
 		}
-		
-		
 	}
-
 }

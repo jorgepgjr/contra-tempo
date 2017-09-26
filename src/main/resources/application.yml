@@ -6,12 +6,12 @@ logging:
   level:
     org:
       springframework:
-        web: ERROR
-        security: ERROR
+        web: INFO
+        security: DEBUG
 security:
-  user:
-    password: 123
-    name: user
+#  user:
+#    password: 123
+#    name: user
 #  ignored: /**/**
 spring:
   jpa:

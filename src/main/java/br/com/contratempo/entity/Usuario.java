@@ -1,8 +1,6 @@
 package br.com.contratempo.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,22 +20,33 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @NoArgsConstructor
 public class Usuario implements UserDetails {
+
 	private static final long serialVersionUID = -1999601982569255029L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String username;
+	private String nome;
 	@Email
 	private String email;
 	private String password;
+	private boolean enabled = true;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Role> roles = new ArrayList<Role>();
+	private Set<Role> roles;
 
 	public Usuario(String username, String email) {
 		super();
 		this.username = username;
 		this.email = email;
+	}
+
+	public void addRole(Role role){
+		if (roles == null){
+			roles = new HashSet<>();
+		}
+		roles.add(role);
 	}
 
 	@Override
@@ -52,7 +61,7 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -60,8 +69,4 @@ public class Usuario implements UserDetails {
 		return true;
 	}
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
 }

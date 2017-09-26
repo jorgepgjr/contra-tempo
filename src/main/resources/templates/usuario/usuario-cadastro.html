@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="usuario-cadastro">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/login.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/jquery-2.2.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/usuario/usuario-cadastro.js}"/>
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-center">Cadastro de Novo Usuário</h3>
+                <div id="messages"/>
+                <div class="panel-body">
+                    <form id="register-form-usuario" th:action="@{usuario/novo}" method="post" role="form"
+                          modelAttribute="usuario">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" tabindex="1" class="form-control"
+                                   placeholder="Username" value=""/>
+                        </div>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" id="nome" tabindex="1" class="form-control"
+                                   placeholder="Nome Completo" value=""/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" tabindex="1" class="form-control"
+                                   placeholder="Email" value=""/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha</label>
+                            <input type="password" name="password" id="password" tabindex="2"
+                                   class="form-control" placeholder="Senha"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmação de Senha</label>
+                            <input type="password" name="confirm-password" id="confirm-password" tabindex="2"
+                                   class="form-control" placeholder="Confirmação de Senha"/>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <input type="submit" name="register-submit" id="register-submit"
+                                           tabindex="4" class="form-control btn btn-register"
+                                           value="Register Now"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 well">
+            <h3 class="text-center">Usuário</h3>
+            <div id="messages-todos"/>
+            <div class="input-group" id="tabela-usuarios">
+                <ul class="list-group">
+                    <li th:each="usuario : ${usuarios}" class="list-group-item">
+                        <span th:text="${usuario.nome}"/>
+                        <button type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

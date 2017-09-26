@@ -62,6 +62,18 @@ $( document ).ready(function() {
    		return false; // stop the browser following the link
    	});
 
+   	$("#menu-usuario").click(function() {
+   		showLoading();
+   		$.ajax({
+   			type : "GET",
+   			url : "usuario/cadastro",
+   			success : function(data) {
+   				carregaTela(data, 'menu-usuario');
+   			}
+   		});
+   		return false; // stop the browser following the link
+   	});
+
    	$(".btn-pagar").click(function(event) {
    		event.preventDefault();
    		$.ajax({

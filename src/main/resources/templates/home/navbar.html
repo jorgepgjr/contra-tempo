@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation" th:fragment="navbar">
+    <link th:href="@{/css/login.css}" rel="stylesheet"/>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#myNavbar">
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home">Studio Contra-Tempo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li id="menu-aluno"><a data-toggle="collapse" data-target=".nav-collapse.in" href="aluno">Aluno</a></li>
+                <li id="menu-turma"><a data-toggle="collapse" data-target=".nav-collapse.in" href="turma">Turma</a></li>
+                <li id="menu-professor"><a data-toggle="collapse" data-target=".nav-collapse.in" href="professor">Professor</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><span sec:authentication="principal.nome"></span></li>
+                <li id="logout">
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" name="logout-submit" id="logout-submit" tabindex="4"
+                               class="form-control btn btn-login" value="Logout"/>
+                    </form>
+                </li>
+                <li id="menu-usuario" sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-right">
+                    <a data-toggle="collapse" data-target=".nav-collapse.in" href="usuario"> Novos Usuários </a>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+</body>
+</html>
