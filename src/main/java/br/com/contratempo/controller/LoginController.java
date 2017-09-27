@@ -158,13 +158,11 @@ public class LoginController {
 			turmaRepository.save(turma2);
 		}
 		if (clienteRepository.count() == 0) {
-			clienteRepository.save(new Cliente("Jorge Peres", "jorgepgjr@gmail.com", "13997295671", "https://goo.gl/IweKcl"));
-			clienteRepository.save(new Cliente("Dora Magno", "minhaSogra@gmail.com", "11997295671", "https://goo.gl/IweKcl"));
-			clienteRepository.save(new Cliente("Aercio Peres Magno", "amoOJorge@gmail.com", "1191132123", "https://goo.gl/IweKcl"));			
+			clienteRepository.save(new Cliente("Jorge Peres", "jorgepgjr@gmail.com", "13997295671", ""));
+			clienteRepository.save(new Cliente("Dora Magno", "minhaSogra@gmail.com", "11997295671", ""));
+			clienteRepository.save(new Cliente("Aercio Peres Magno", "amoOJorge@gmail.com", "1191132123", ""));
 			clienteRepository.save(new Cliente("Erika Magno","329148780","Rua Tocantins 77 apt 171","jorgepgjr@gmail.com","11997295671",
-					"Dancarina","internet",Calendar.getInstance(),'F',"https://goo.gl/IweKcl",Calendar.getInstance()));
-			
-			
+					"Dancarina","internet",Calendar.getInstance(),'F',"",Calendar.getInstance()));
 			clienteRepository.save(new Cliente("Jorge Full","312312312312","Rua Tocantins 77 apt 171","jorgepgjr@gmail.com","1132139123",
 					"Reporter","internet",Calendar.getInstance(),'M',"http://graph.facebook.com/v2.5/100000160917760/picture",Calendar.getInstance()));
 		}
