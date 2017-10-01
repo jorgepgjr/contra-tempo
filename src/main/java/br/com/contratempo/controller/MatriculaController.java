@@ -47,8 +47,7 @@ public class MatriculaController {
 //		this.salvaCliente(cliente);
 //		return new ModelAndView("redirect:/cliente");
 //	}
-//	
-	//TODO: trocar para PUT e configurar
+//
 	@RequestMapping(value="/{id}/pagar",  method = RequestMethod.POST)	
 	public ModelAndView pagarMatricula(@PathVariable("id") Long id) {
 		Matricula matricula = matriculaRepository.findOne(id);

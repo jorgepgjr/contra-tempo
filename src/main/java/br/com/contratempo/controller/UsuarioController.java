@@ -20,10 +20,13 @@ import br.com.contratempo.entity.Usuario;
 import br.com.contratempo.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,6 +65,13 @@ public class UsuarioController {
 	@Autowired
 	private RoleRepository roleRepository;
 
+    @GetMapping
+    public ModelAndView usuarios(Model model) {
+        ModelAndView retorno = new ModelAndView("usuario/usuario-cadastro :: todos-usuarios");
+        retorno.addObject("usuarios",usuarioRepository.findAll());
+        return retorno;
+    }
+
 	@GetMapping("/cadastro")
 	public ModelAndView login(Model model) {
         ModelAndView retorno = new ModelAndView("usuario/usuario-cadastro :: usuario-cadastro");
@@ -71,16 +81,40 @@ public class UsuarioController {
 
     @PostMapping("/novo")
     public ModelAndView criaUsuario(@Valid Usuario usuario) {
+        ModelAndView retorno;
         if (usuarioRepository.findByUsername(usuario.getUsername()) != null){
-            log.debug("Usuário {} já encontrado na base", usuario.getUsername());
+            retorno = cadastroComErro("Já existe um usuário " + usuario.getUsername()+
+                    " cadastrado, por favor escolha outro usuário", "usuario/usuario-cadastro-error");
+
         } else if (usuarioRepository.findByEmail(usuario.getEmail()) != null){
-            log.debug("Email {} já cadastrado na base", usuario.getEmail());
+            retorno = cadastroComErro("Já existe um email " + usuario.getEmail()+ " cadastrado, por favor escolha outro",
+                    "usuario/usuario-cadastro-error");
         } else {
             usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
             usuarioRepository.save(usuario);
+            retorno = new ModelAndView("usuario/usuario-cadastro-success");
+            retorno.addObject("usuario", usuario);
         }
-        ModelAndView retorno = new ModelAndView("usuario/usuario-cadastro-success");
+        return retorno;
+    }
+
+
+    @PostMapping("/{id}/delete")
+    public ModelAndView deletaUsuario(@PathVariable("id") Long id) {
+        final Usuario usuario = usuarioRepository.findOne(id);
+	    usuarioRepository.delete(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        log.debug("Removendo o usuário de id: {} pelo usuário autenticado: {}", id, auth.getName());
+
+        ModelAndView retorno = new ModelAndView("usuario-cadastro-delete-success :: usuario-cadastro-delete-success");
         retorno.addObject("usuario", usuario);
+        return retorno;
+    }
+
+    private ModelAndView cadastroComErro(String mensagemDeErro, String paginaDoErro){
+        ModelAndView retorno = new ModelAndView(paginaDoErro);
+        retorno.addObject("message", mensagemDeErro);
+        log.debug(mensagemDeErro);
         return retorno;
     }
 
