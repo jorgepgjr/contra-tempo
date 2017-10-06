@@ -83,11 +83,11 @@ public class UsuarioController {
     public ModelAndView criaUsuario(@Valid Usuario usuario) {
         ModelAndView retorno;
         if (usuarioRepository.findByUsername(usuario.getUsername()) != null){
-            retorno = cadastroComErro("Já existe um usuário " + usuario.getUsername()+
+            retorno = cadastroComErro("Já existe um usuário:" + usuario.getUsername()+
                     " cadastrado, por favor escolha outro usuário", "usuario/usuario-cadastro-error");
 
         } else if (usuarioRepository.findByEmail(usuario.getEmail()) != null){
-            retorno = cadastroComErro("Já existe um email " + usuario.getEmail()+ " cadastrado, por favor escolha outro",
+            retorno = cadastroComErro("Já existe um email: " + usuario.getEmail()+ " cadastrado, por favor escolha outro",
                     "usuario/usuario-cadastro-error");
         } else {
             usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
@@ -106,7 +106,7 @@ public class UsuarioController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         log.debug("Removendo o usuário de id: {} pelo usuário autenticado: {}", id, auth.getName());
 
-        ModelAndView retorno = new ModelAndView("usuario-cadastro-delete-success :: usuario-cadastro-delete-success");
+        ModelAndView retorno = new ModelAndView("usuario/usuario-cadastro-delete-success :: usuario-cadastro-delete-success");
         retorno.addObject("usuario", usuario);
         return retorno;
     }
