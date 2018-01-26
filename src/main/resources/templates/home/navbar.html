@@ -17,6 +17,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
                 <li id="menu-aluno"><a data-toggle="collapse" data-target=".nav-collapse.in" href="aluno">Aluno</a></li>
+                <li id="menu-pagamento"><a data-toggle="collapse" data-target=".nav-collapse.in" href="aluno">Pagamento</a></li>
                 <li id="menu-turma"><a data-toggle="collapse" data-target=".nav-collapse.in" href="turma">Turma</a></li>
                 <li id="menu-professor"><a data-toggle="collapse" data-target=".nav-collapse.in" href="professor">Professor</a></li>
             </ul>
@@ -30,7 +31,7 @@
                     </form>
                 </li>
                 <li id="menu-usuario" sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-right">
-                    <a data-toggle="collapse" data-target=".nav-collapse.in" href="usuario"> Novos Usuários </a>
+                    <a data-toggle="collapse" data-target=".nav-collapse.in" href="usuario">Usuários</a>
                 </li>
 
 

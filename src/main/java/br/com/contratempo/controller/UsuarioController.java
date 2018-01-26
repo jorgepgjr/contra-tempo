@@ -68,7 +68,9 @@ public class UsuarioController {
     @GetMapping
     public ModelAndView usuarios(Model model) {
         ModelAndView retorno = new ModelAndView("usuario/usuario-cadastro :: todos-usuarios");
+
         retorno.addObject("usuarios",usuarioRepository.findAll());
+        retorno.addObject("roles", roleRepository.findAll());
         return retorno;
     }
 
@@ -76,6 +78,7 @@ public class UsuarioController {
 	public ModelAndView login(Model model) {
         ModelAndView retorno = new ModelAndView("usuario/usuario-cadastro :: usuario-cadastro");
         retorno.addObject("usuarios",usuarioRepository.findAll());
+        retorno.addObject("roles", roleRepository.findAll());
 		return retorno;
 	}
 

@@ -15,11 +15,12 @@ import org.springframework.security.core.GrantedAuthority;
 public class Role implements GrantedAuthority {
 
     private static final long serialVersionUID = -5638759441805448853L;
-    public static final Role ROLE_ADMIN = new Role("ROLE_ADMIN");
-    public static final Role ROLE_SECRETARIA = new Role("ROLE_SECRETARIA");
+    public static final Role ROLE_ADMIN = new Role("ROLE_ADMIN", "Administração");
+    public static final Role ROLE_SECRETARIA = new Role("ROLE_SECRETARIA", "Secretária");
 
     @Id
     private String name;
+    private String descricao;
 
     @Override
     public String getAuthority() {

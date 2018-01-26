@@ -25,6 +25,8 @@ public class Movimento{
 	private Calendar data;
 	private char tipo;
 	@ManyToOne
+	private Cliente cliente;
+	@ManyToOne
 	private Matricula matricula;
 
 	public Movimento(String nome) {

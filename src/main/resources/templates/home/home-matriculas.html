@@ -11,8 +11,8 @@
   </thead>
   <tbody>
   <tr th:each="cliente : ${clientes}" th:attr="data-href='${cliente.id}'">
-    <td><span th:value="${cliente.id}"/></td>
-    <td><span th:value="${cliente.nome}"/></td>
+    <td><span th:text="${cliente.id}"/></td>
+    <td><span th:text="${cliente.nome}"/></td>
     <td><img th:src="${cliente.fotoUrl}" class="img-rounded" alt="Sem Imagem" width="50"
              height="50"/></td>
     <td>

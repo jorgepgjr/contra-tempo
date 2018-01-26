@@ -114,7 +114,8 @@ public class LoginController {
 	//TODO: Remover quando for rodar a aplicacao
 	private void populaOBanco(){
 		List<Modalidade> modalidades = (List<Modalidade>) modalidadeRepository.findAll();
-		if (modalidades.size() == 0){			
+		if (modalidades.size() == 0){
+			roleRepository.save(Role.ROLE_SECRETARIA);
 			modalidadeRepository.save(new Modalidade("Samba de Gafiera"));
 			modalidadeRepository.save(new Modalidade("Forro"));
 			modalidadeRepository.save(new Modalidade("Bolero"));
