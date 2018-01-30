@@ -9,10 +9,10 @@ logging:
         web: INFO
         security: DEBUG
 security:
+  ignored: /**/**
 #  user:
 #    password: 123
 #    name: user
-#  ignored: /**/**
 spring:
   jpa:
     hibernate:
