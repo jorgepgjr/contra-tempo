@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 80
   context-path:
 logging:
 #  file: /var/log/contratempo.log
@@ -38,4 +38,4 @@ spring:
       username: bcd784f9327af7
       password: e9b5131c
 server:
-  port: 9090
+  port: 80
